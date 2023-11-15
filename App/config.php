@@ -3,9 +3,11 @@
 return [
     /* configuració de connexió a la base dades */
     /* Path on guardarem el fitxer sqlite */
-    "sqlite" => [
-        "path" => Emeset\Env::get("sqlite_path", "../"),
-        "name" => Emeset\Env::get("sqlite_name", "db.sqlite")
+    "mysql" => [
+        "host" => Emeset\Env::get("host", "projectdb.ddns.net"),
+        "db" => Emeset\Env::get("db", "orlify"),
+        "user" => Emeset\Env::get("user", "admin"),
+        "pass" => Emeset\Env::get("pass","opensource")
     ],
     /* Nom de la cookie */
     "cookie" => [
@@ -20,3 +22,23 @@ return [
         "version" => Emeset\Env::get("app_version", "0.2.5")
     ]
 ];
+
+/** 
+ * Fitxer de configuració de l'aplicació.
+ * */ 
+
+
+
+/**
+ * Carreguem les classes del Framework Emeset
+ */
+
+use \Emeset\Container;
+use \Emeset\Request;
+use \Emeset\Response;
+
+/**
+ * Carreguem els models de l'aplicació
+ */
+include "models/db.php";
+include "models/users.php";
