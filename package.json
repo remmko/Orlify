@@ -33,5 +33,22 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
+  },
+  "name": "orlify",
+  "description": "Versió amb frontcontroller del \"Framework\" Emeset.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remmko/Orlify.git"
+  },
+  "author": "Anton Stamov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/remmko/Orlify/issues"
+  },
+  "homepage": "https://github.com/remmko/Orlify#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.2"
   }
 }
