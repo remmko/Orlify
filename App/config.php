@@ -1,13 +1,17 @@
 <?php
-
 return [
     /* configuració de connexió a la base dades */
     /* Path on guardarem el fitxer sqlite */
-    "mysql" => [
-        "host" => Emeset\Env::get("host", "projectdb.ddns.net"),
-        "db" => Emeset\Env::get("db", "orlify"),
-        "user" => Emeset\Env::get("user", "admin"),
-        "pass" => Emeset\Env::get("pass","opensource")
+    "db_type" => Emeset\Env::get("db_type", "mysql"),
+    "sqlite" => [
+        "path" => Emeset\Env::get("sqlite_path", "../"),
+        "name" => Emeset\Env::get("sqlite_name", "db.sqlite") /* sqlite o mysql */
+    ],
+    "db" => [
+        "user" => "admin",
+        "pass" => "opensource",
+        "db" => "orlify",
+        "host" => "admin.remmko.online"
     ],
     /* Nom de la cookie */
     "cookie" => [
@@ -21,24 +25,5 @@ return [
         "name" => Emeset\Env::get("app_name", "Emeset demo"),
         "version" => Emeset\Env::get("app_version", "0.2.5")
     ]
+
 ];
-
-/** 
- * Fitxer de configuració de l'aplicació.
- * */ 
-
-
-
-/**
- * Carreguem les classes del Framework Emeset
- */
-
-use \Emeset\Container;
-use \Emeset\Request;
-use \Emeset\Response;
-
-/**
- * Carreguem els models de l'aplicació
- */
-include "models/db.php";
-include "models/users.php";

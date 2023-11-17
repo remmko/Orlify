@@ -1,8 +1,7 @@
-<?php
+<?PHP
+namespace App\Models;
 
-namespace App\models;
-
-class db {
+class Db {
 
     public $sql;
 
@@ -12,7 +11,7 @@ class db {
         try {
             $this->sql = new \PDO($dsn, $user, $pass);
         } catch (\PDOException $e) {
-            die('Connection error: ' . $e->getMessage());
+            die('Ha fallat la connexió: ' . $e->getMessage());
         }
     }
 

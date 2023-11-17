@@ -16,7 +16,14 @@
 
 <body>
 
-  <?php include "mainmenu.php" ?>
+  <?php include "mainmenu.php";
+
+    if($_SESSION["auth"]=="false"){
+      include "wrong.php";
+      $_SESSION["auth"]="";
+    }
+  ?>
+  
   <form method ="POST" action="auth">
     <div class="form-group">
       <label for="exampleInputEmail1">Username</label>

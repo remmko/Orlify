@@ -22,6 +22,9 @@ include "../App/config.php";
 include "../App/Controllers/index.php";
 include "../App/Controllers/login.php";
 include "../App/Controllers/auth.php";
+include "../App/Controllers/usermod.php";
+include "../App/Controllers/studentpanel.php";
+
 
 /* Creem els diferents models */
 $contenidor = new \App\Container(__DIR__ . "/../App/config.php");
@@ -32,19 +35,10 @@ $app->middleware([\App\Middleware\App::class, "execute"]);
 $app->route("", "ctrlIndex");
 $app->route("login", "ctrlLogin");
 $app->route("auth", "ctrlAuth");
-$app->route("privat", [\App\Controllers\Privat::class, "privat"], ["auth"]);
-$app->route("tancar-sessio", "ctrlTancarSessio", ["auth"]);
+$app->route("usermod", "ctrlMod");
+$app->route("studentpanel", "ctrlStudent");
+$app->route("logout","ctrlLogout");
 
-$app->route("ajax", function ($request, $response) {
-    $response->set("result", "ok");
-    return $response;
-});
-
-$app->route("/hola/{id}", function ($request, $response) {
-    $id = $request->getParam("id");
-    $response->setBody("Hola {$id}!");
-    return $response;
-});
 
 
 $app->execute();

@@ -26,10 +26,28 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">Home </a>
             <a class="nav-item nav-link" href="#">Features</a>
             <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link" href="login">Login</a>
+            <a class="nav-item nav-link" href="login">
+            <?php
+              if($_SESSION["auth"]=="false"){
+                echo "Login";
+              }else{
+                echo "";
+              }
+            ?>
+            </a>
+            <a class="nav-item nav-link" href="logout">
+
+            <?php
+              if($_SESSION["auth"]=="true"){
+                echo "Logout";
+              }else{
+                echo "";
+              }
+            ?>
+            </a>
           </div>
         </div>
       </nav>

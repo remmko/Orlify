@@ -9,30 +9,25 @@ class Container extends EmesetContainer {
 
     public function __construct($config){
         parent::__construct($config);
-        
-        $this["\App\Controllers\Privat"] = function ($c) {
-            // Aqui podem inicialitzar totes les dependències del controlador i passar-les com a paràmetre.
-            return new \App\Controllers\Privat($c);
+
+        $dbType = $this->get("config")["db_type"];
+       
+         
+        $this["users"] = function ($c) {
+            // Aqui podem inicialitzar totes les dependències del model i passar-les com a paràmetre.
+            return new \App\models\users($c["db"]->getConnection());
         };
 
+           
 
-        $this["mysql"] = function ($c) {
-            // Aqui podem inicialitzar totes les dependències del controlador i passar-les com a paràmetre.
-            $user = $c["config"]["mysql"]["user"];
-            $pass = $c["config"]["mysql"]["pass"];
-            $db = $c["config"]["mysql"]["db"];
-            $host = $c["config"]["mysql"]["host"];
-
-            return new \App\models\db($user, $pass, $db, $host);
+        $this["db"] = function ($c) {
+            // Aqui podem inicialitzar totes les dependències del model i passar-les com a paràmetre.
+            return new \App\models\db(
+                $c["config"]["db"]["user"],
+                $c["config"]["db"]["pass"],
+                $c["config"]["db"]["db"], 
+                $c["config"]["db"]["host"]
+            );
         };
-
-
-    }
-
-
-
-    
-    public function auth(){
-        return new \App\models\users($this->sql);
     }
 }
