@@ -32,6 +32,8 @@
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
       <input type="password" name="password"  class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <small id="emailHelp" class="form-text text-muted"><a href="register">Don't have an account? Sign up now!</a></small>
+
     </div>
   
     <button type="submit" class="btn btn-primary">Submit</button>

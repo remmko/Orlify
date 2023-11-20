@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Panel</title>
 </head>
+<?php include "mainmenu.php"?>
 <body>
    <p>Name: <?php echo $result["name"]?></p> 
    <p>Last name: <?php echo $result["last_name"]?></p>

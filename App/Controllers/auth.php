@@ -28,3 +28,28 @@ function ctrlAuth($request, $response, $container){
        
     
 }
+
+
+function ctrlCheck($request, $response, $container){
+    $username = $request ->get(INPUT_POST, "login");
+    $name = $request->get(INPUT_POST, "name");
+    $surename = $request->get(INPUT_POST, "surename");
+    $email = $request->get(INPUT_POST, "email");
+    $password = hash("sha256",$request->get(INPUT_POST, "password"));
+    $img = $request->get("FILES","img");
+    $uploaddir = "img/";
+    $route = $uploaddir.$img["name"];
+    move_uploaded_file($img["tmp_name"], $route);
+
+    $register = $container -> get("users");
+    $register = $register -> register($username, $name, $surename, $email, $password, $route);
+   
+    if($register=="succsesful"){
+        $response -> redirect("Location: login");
+    }elseif($register == "emailExists"){
+        $response -> redirect("Location: register?email=true");
+    }elseif($register == "usernameExists"){
+        $response -> redirect("Location: register?username=true");
+    }
+    return $response;
+}

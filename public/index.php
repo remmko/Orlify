@@ -38,7 +38,8 @@ $app->route("auth", "ctrlAuth");
 $app->route("usermod", "ctrlMod");
 $app->route("studentpanel", "ctrlStudent");
 $app->route("logout","ctrlLogout");
-
+$app->route("register", "ctrlRegister");
+$app->route("checkregister","ctrlCheck");
 
 
 $app->execute();

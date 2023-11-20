@@ -48,4 +48,50 @@ namespace App\models;
         
         }
 
+
+        public function register($username, $name, $surename, $email, $password, $route){
+
+            $sql = "select username, email from users";
+            $stm = $this->sql->prepare($sql);
+
+            $stm->execute();
+            $tasks = array();
+            while ($result = $stm->fetch(\PDO::FETCH_ASSOC)) {
+                $tasks[] = $result;
+            }
+
+            
+            for($i = 0; $i < count($tasks); $i++){
+                if($tasks[$i]["username"]==$username){
+                    return "usernameExists";
+                }else if($tasks[$i]["email"]==$email){
+                    return "emailExists";
+                }
+            }
+
+            $sql = "INSERT INTO users (name, last_name, username, password_hash, email, avatar, role) 
+            VALUES (:name, :surename, :username, :pass, :email, :img, :role);";
+
+
+            try {
+                $stmt = $this->sql->prepare($sql);
+                $stmt->execute([
+                    ':name' => $name,
+                    ':surename' => $surename,
+                    ':username'=>$username,
+                    ':pass'=>$password,
+                    ':email'=>$email,
+                    ':img'=>$route,
+                    ':role'=> "undifined" 
+                ]);
+
+                return "succsesful";
+                
+               
+            } catch (PDOException $e) {
+                echo "Registration error: " . $e->getMessage();
+            } 
+        
+        }
+
     }

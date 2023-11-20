@@ -29,24 +29,27 @@
             <a class="nav-item nav-link" href="#">Home </a>
             <a class="nav-item nav-link" href="#">Features</a>
             <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link" href="login">
-            <?php
-              if($_SESSION["auth"]=="false"){
-                echo "Login";
-              }else{
-                echo "";
-              }
-            ?>
-            </a>
-            <a class="nav-item nav-link" href="logout">
+            <a class="nav-item nav-link" id = "inout"href=""></a>
 
-            <?php
-              if($_SESSION["auth"]=="true"){
-                echo "Logout";
+            <script>
+              var inout = document.getElementById("inout");
+              var auth = <?php if(isset($_SESSION["auth"])){
+                echo $_SESSION["auth"];
               }else{
-                echo "";
+                echo "false";
+              }?>;
+              if(auth == "false"){
+                inout.textContent = "Login";
+                inout.href = "login";
+              }else if(auth){
+                inout.textContent = "Logout";
+                inout.href = "logout";
+              }else{
+                inout.textContent = "Login";
+                inout.href = "login";
               }
-            ?>
+            </script>
+
             </a>
           </div>
         </div>
