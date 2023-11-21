@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/index.css">
 </head>
 
-<body>
+<body class="overflow-hidden">
 
     <?php require_once("nav.php") ?>
 
@@ -21,19 +21,22 @@
 
     <div class="mx-auto p-10 grid-container">
         <!-- Side Navbar -->
-        <div class="left-menu text-xl">
-            <ul>
-                <li>Classes Publiques</li>
-                <ul class="public text-base">
-                    <li>DAW2</li>
+        <div class="sidebar">
+            <div class="left-menu text-xl">
+                <ul>
+                    <li>Classes Publiques</li>
+                    <ul class="public text-base">
+                        <li>DAW2</li>
+                    </ul>
+                    <br>
                 </ul>
-                <br>
-            </ul>
+            </div>
         </div>
+        
 
         <!-- Central -->
         <div class="central">
-            holaaa
+            
         </div>
 
         <!-- Right Buttons -->
@@ -54,6 +57,18 @@
                 </div>
 
             </form>
+
+            <div class="edit">
+                <button>Editar</button>
+            </div>
+
+            <div class="template">
+                <button>Canviar plantilla</button>
+            </div>
+
+            <div class="download">
+                <button>Descarregar</button>
+            </div>
 
         </div>
     </div>
