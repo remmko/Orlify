@@ -33,6 +33,12 @@ use \Emeset\Contracts\Container;
             $response -> set("username", $username);
 
         }
+
+        $getGroups = $container -> get("groups");
+        $getGroups = $getGroups -> getGroups();
+        $response -> set("groups", $getGroups);
+       
+       
         
         $response -> setTemplate("register.php");
         return $response;

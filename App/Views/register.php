@@ -49,6 +49,39 @@
                 <label for="formFile" class="form-label">Select image</label>
                 <input class="form-control" name="img" type="file" id="formFile">
             </div>
+
+            <div id="groupselect">
+
+                <script>
+                    getGroups();
+                    function getGroups(){
+                        var groupselect = document.getElementById("groupselect");
+                        groupselect.innerHTML="";
+                        groupselect.textContent="Select your groups:";
+                        var groups = <?php echo json_encode($groups); ?>;
+                        for(var i = 0; i<groups.length; i++){
+                            var formCheck = document.createElement("div");
+                            formCheck.setAttribute("class","form-check");
+                            groupselect.appendChild(formCheck);
+                            var input = document.createElement("input");
+                            input.setAttribute("class","form-check-input");
+                            input.setAttribute("type","checkbox");
+                            input.setAttribute("id","flexCheckDefault");
+                            input.setAttribute("name","group"+i);
+                            formCheck.appendChild(input);
+                            var label = document.createElement("label");
+                            label.setAttribute("class","form-check-label");
+                            label.setAttribute("for","flexCheckDefault");
+                            label.textContent = groups[i]["grup_name"];
+                            formCheck.appendChild(label);
+                        }
+                    }
+                  
+             
+                </script>
+               
+                
+            </div>
         </div>
         <button type="submit" id = "submit" name="submit" class="btn btn-primary">Sign up</button>
         <small id="emailHelp" class="form-text text-muted"><a href="login">Already have an account? Log in!</a></small>

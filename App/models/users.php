@@ -49,7 +49,24 @@ namespace App\models;
         }
 
 
-        public function register($username, $name, $surename, $email, $password, $route){
+        public function getUserID($username){
+            
+
+            $sql = "select id from users where username = :username;";
+
+            $stm = $this->sql->prepare($sql);
+
+            $stm->execute([':username'=>$username]);
+            $result = $stm->fetch(\PDO::FETCH_ASSOC);
+      
+            return $result;
+
+            
+        
+        }
+
+
+        public function register($username, $name, $surename, $email, $password, $route, $grups, $getGroups){
 
             $sql = "select username, email from users";
             $stm = $this->sql->prepare($sql);
@@ -85,13 +102,30 @@ namespace App\models;
                     ':role'=> "undifined" 
                 ]);
 
-                return "succsesful";
                 
                
             } catch (PDOException $e) {
                 echo "Registration error: " . $e->getMessage();
             } 
-        
+
+
+            $getID = $this-> getUserID($username);
+         
+            for ($i = 0; $i < count($grups); $i++){
+                if($grups[$i] != null){
+                    $sql = "INSERT INTO user_grups (user_id, grup_id, aproved) VALUES (:userID, :grupID, 0);";
+                    $stmt = $this->sql->prepare($sql);
+                    $stmt->execute([
+                        ':userID' => $getID["id"],
+                        ':grupID' => $getGroups[$i]["id"]
+                    ]);
+                }
+              
+            }
+
+         
+            return "succsesful";
+
         }
 
     }

@@ -18,6 +18,11 @@ class Container extends EmesetContainer {
             return new \App\models\users($c["db"]->getConnection());
         };
 
+        $this["groups"] = function ($c) {
+            // Aqui podem inicialitzar totes les dependències del model i passar-les com a paràmetre.
+            return new \App\models\groups($c["db"]->getConnection());
+        };
+
            
 
         $this["db"] = function ($c) {
