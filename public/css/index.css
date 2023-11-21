@@ -1,0 +1,71 @@
+/* ######### GRID */
+.grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.left-menu {
+    grid-column: 1;
+}
+
+.central {
+    grid-column: 2;
+}
+
+.right-buttons {
+    grid-column: 3;
+}
+
+
+
+/* ########## Sidebar */
+.left-menu {
+    background: linear-gradient(
+        135deg,
+        #9c75f7,
+        #ce74f1
+    );
+    width: 200px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.left-menu ul {
+    padding: 20px 0 20px 20px;
+}
+
+
+/* ########## Central */
+.central {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(
+        135deg,
+        #9c75f7,
+        #ce74f1
+    );
+    height: 600px;
+    width: 1000px;
+    border-radius: 15px;
+}
+
+
+/* ######### Right Buttons */
+.right-buttons {
+    background: linear-gradient(
+        135deg,
+        #9c75f7,
+        #ce74f1
+    );
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: baseline;
+    margin-top: -110px;
+}

@@ -1,0 +1,13 @@
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+p {
+    margin-top: 25px;
+    margin-left: 50px;
+}
+
+img {
+    margin-right: 50px;
+}
