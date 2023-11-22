@@ -10,6 +10,8 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 </head>
 
+<?php include "mainmenu.php"?>
+
 <body>
     <form id="userForm" method="POST" action="changeUser">
         <table id="userDataTable">

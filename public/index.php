@@ -42,6 +42,9 @@ $app->route("studentpanel", "ctrlStudent");
 $app->route("logout","ctrlLogout");
 $app->route("register", "ctrlRegister");
 $app->route("checkregister","ctrlCheck");
+$app->route("teacherpanel", "ctrlUCP");
+$app->route("teacherpanelcontrols", "ctrlUCPControls");
+$app->route("changeUser", "ctrlTeacherPanelControls");
 
 
 $app->execute();
