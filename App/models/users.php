@@ -60,8 +60,6 @@ namespace App\models;
             $result = $stm->fetch(\PDO::FETCH_ASSOC);
       
             return $result;
-
-            
         
         }
 

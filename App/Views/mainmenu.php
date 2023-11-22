@@ -27,8 +27,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="#">Home </a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
+            <a class="nav-item nav-link" id="orlas" href=""></a>
+            <a class="nav-item nav-link" id="panel"  href=""></a>
             <a class="nav-item nav-link" id = "inout"href=""></a>
 
             <script>
@@ -48,6 +48,28 @@
                 inout.textContent = "Login";
                 inout.href = "login";
               }
+
+              var panel = document.getElementById("panel");
+              var orlas = document.getElementById("orlas");
+              var role = "<?php if($_SESSION["auth"]&&$_SESSION["role"]=="student"){
+                echo "student";
+              }elseif($_SESSION["auth"]&&$_SESSION["role"]=="teacher"){
+                echo "teacher";
+              }?>";
+
+              if(role == "student"){
+                panel.textContent = "Student Panel";
+                panel.href = "studentpanel";
+                orlas.textContent = "Mis Orlas";
+                orlas.href = "studentorlas";
+                
+              }else if(role == "teacher"){
+                panel.textContent = "Teacher Panel";
+                panel.href = "teacherpanel";
+                orlas.textContent = "Orlas";
+                orlas.href = "teacherorlas";
+              }
+
             </script>
 
             </a>
