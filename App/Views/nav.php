@@ -7,28 +7,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Tailwind CSS -->
-    <link rel="stylesheet" href="/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-    <!-- CSS -->
+    <!-- Your custom CSS -->
     <link rel="stylesheet" href="/css/nav.css">
-
 
 </head>
 
 <body>
 
     <header class="bg-gray-100 h-20">
-        
-        <a href="/">
-            <p>Orlify</p>
-        </a>
 
-        <img src="/assets/user.svg" class="w-8" alt="Usuari">
+
+        <nav class="border-none dark:bg-gray-900 ml-auto mr-4">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <button type="button"
+                        class="flex text-sm rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                        id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                        data-dropdown-placement="bottom">
+                        <img class="w-8 h-8 rounded-full"
+                            src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="user photo">
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg" id="user-dropdown">
+                        <ul class="py-2" aria-labelledby="user-menu-button">
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                    Editar
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                    Classes
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                    Tancar Sessió
+                                </a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
 
     </header>
 
 
-
+    <script src="/js/flowbite.min.js"></script>
     <script src="/js/bundle.js"></script>
 </body>
 

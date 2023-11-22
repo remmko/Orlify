@@ -49,6 +49,7 @@
   },
   "homepage": "https://github.com/remmko/Orlify#readme",
   "dependencies": {
-    "bootstrap": "^5.3.2"
+    "bootstrap": "^5.3.2",
+    "flowbite": "^2.2.0"
   }
 }
