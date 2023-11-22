@@ -24,6 +24,8 @@ include "../App/Controllers/login.php";
 include "../App/Controllers/auth.php";
 include "../App/Controllers/usermod.php";
 include "../App/Controllers/studentpanel.php";
+include "../App/Controllers/teacherpanel.php";
+include "../App/Controllers/teacherPanelControls.php";
 
 
 /* Creem els diferents models */
@@ -40,6 +42,8 @@ $app->route("studentpanel", "ctrlStudent");
 $app->route("logout","ctrlLogout");
 $app->route("register", "ctrlRegister");
 $app->route("checkregister","ctrlCheck");
+$app->route("teacherpanel","ctrlUCP");
+$app->route("changeUser","ctrlTeacherPanelControls");
 
 
 $app->execute();
