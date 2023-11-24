@@ -20,13 +20,9 @@ function ctrlAuth($request, $response, $container){
         return $response;
         
     }else{
-        $response -> setSession("auth", "false");
         $response -> redirect("Location: login");
         return $response;
     }
-        
-       
-    
 }
 
 

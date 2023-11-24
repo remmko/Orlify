@@ -1,43 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
+
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
-  </script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/main.css">
+
+    <title>Login</title>
+
 </head>
 
-<body>
 
-  <?php include "mainmenu.php";
 
-    if($_SESSION["auth"]=="false"){
-      include "wrong.php";
-      $_SESSION["auth"]="";
-    }
-  ?>
-  
-  <form method ="POST" action="auth">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Username</label>
-      <input type="username" name = "username"class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" name="password"  class="form-control" id="exampleInputPassword1" placeholder="Password">
-      <small id="emailHelp" class="form-text text-muted"><a href="register">Don't have an account? Sign up now!</a></small>
+<body class="bg-gray-50 dark:bg-gray-900">
 
-    </div>
-  
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <section>
+
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+
+            <div class="w-full bg-white rounded-xl shadow-2xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        Inicia la sessió
+                    </h1>
+                    <form class="space-y-4 md:space-y-6" method ="POST" action="auth">
+                        <div>
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Email
+                            </label>
+                            <input type="text" name="username" id="email"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-xl focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="exemple@email.com" required
+                            >
+                        </div>
+
+                        <div>
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Contrasenya
+                            </label>
+
+                            <input type="password" name="password" id="password" placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-xl focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required
+                            >
+                        </div>
+
+                        <div class="flex items-center justify-between">
+
+                            <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                Has oblidat la contrasenya?
+                            </a>
+
+                        </div>
+                        
+                        <button type="submit"
+                            class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                            Sign in
+                        </button>
+
+                        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                            Encara no tens cap compte?
+                            <a href="/register" class="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                Registra't
+                            </a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
-
-</html>

@@ -1,3 +1,115 @@
+
+
+
+/*------------------------------------------------------------------
+
+1. Tailwind
+2. Navbar
+3. Main page/index
+
+-----------------------------------------------------*/
+
+
+
+
+
+/*------------------------------------------------------------------
+1. Tailwind
+-------------------------------------------------------------------*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/*------------------------------------------------------------------
+2. Navbar
+-------------------------------------------------------------------*/
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/*------------------------------------------------------------------
+3. Main page/index
+-------------------------------------------------------------------*/
+/* ######### GRID */
+.grid-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+/* ########## Sidebar */
+.sidebar {
+    height: 600px;
+}
+
+.left-menu {
+    background: linear-gradient(
+        135deg,
+        #9c75f7,
+        #ce74f1
+    );
+    width: 200px;
+    height: auto;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.left-menu ul {
+    padding: 20px 0 20px 20px;
+}
+
+
+/* ########## Central */
+.central {
+    background: linear-gradient(
+        135deg,
+        #9c75f7,
+        #ce74f1
+    );
+    height: 600px;
+    max-width: 1000px;
+    width: 100%;
+    border-radius: 15px;
+}
+
+
+/* ######### Right Buttons */
+.right-buttons {
+    border-radius: 15px;
+    height: 600px;
+}
+
+.edit button {
+    background: linear-gradient(
+        135deg,
+        #9c75f7,
+        #ce74f1
+    );
+    font-size: 18px;
+    margin-top: 80px;
+    height: 35px;
+    max-width: 234px;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.template button,
+.download button {
+    background: linear-gradient(
+        135deg,
+        #9c75f7,
+        #ce74f1
+    );
+    font-size: 18px;
+    margin-top: 20px;
+    height: 35px;
+    max-width: 234px;
+    width: 100%;
+    border-radius: 15px;
+}

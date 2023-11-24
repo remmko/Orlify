@@ -1,56 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="text/css" rel="stylesheet" href="style/registration.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Registration</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/main.css">
+
+    <title>Registre</title>
+
 </head>
 
-<body>
+<body class="bg-gray-50 dark:bg-gray-900">
+
+    <section class="h-44">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
+            <div
+                class="w-full bg-white rounded-xl shadow-2xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1
+                        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        Crea el teu compte
+                    </h1>
+
+                    <form class="space-y-4 md:space-y-6" action="#">
+                        <div>
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Nom
+                            </label>
+                            <input type="text" name="name" id="name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Pere" required
+                            >
+                        </div>
+
+                        <div>
+                            <label for="surname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Cognom
+                            </label>
+                            <input type="surname" name="surname" id="surname"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Ferrer" required
+                            >
+                        </div>
+
+                        <div>
+                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Nom d'usuari
+                            </label>
+                            <input type="username" name="username" id="username"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="pere78" required
+                            >
+                        </div>
+
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Correu electrònic
+                            </label>
+                            <input type="email" name="email" id="email"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="name@company.com" required
+                            >
+                        </div>
+
+                        <div>
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Contrasenya
+                            </label>
+                            <input type="password" name="password" id="password" placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required
+                            >
+                        </div>
+
+                        <div>
+                            <label for="confirm-password"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Confirmar contrasenya
+                            </label>
+                            <input type="confirm-password" name="confirm-password" id="confirm-password"
+                                placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required=""
+                            >
+                        </div>
+
+                        <button type="submit"
+                            class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                            Crear un compte
+                        </button>
+ 
+                        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                            Ja tens un compte?
+                            <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                Inicia sessió aquí
+                            </a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-    <?php include "mainmenu.php";
-    
-    if($email){
-        include "wrongEmail.php";
-    }elseif($username){
-        include "wrongUsername.php";
-    }
-    
-    ?>
-    
-    <form action = "checkregister" method = "POST" enctype="multipart/form-data">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Username</label>
-                <input type="" class="form-control" name="login" id="inputEmail4" requered="1" placeholder="">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Name</label>
-                <input type="" class="form-control" name="name" id="inputEmail4" placeholder="">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Surename</label>
-                <input type="" class="form-control" name="surename" id="inputEmail4" placeholder="">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" name = "email" id="inputEmail4" placeholder="Email">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">Password</label>
-                <input type="password" class="form-control" name ="password" id="inputPassword4" placeholder="Password">
-            </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Select image</label>
-                <input class="form-control" name="img" type="file" id="formFile">
-            </div>
+</body>
 
-            <div id="groupselect">
+</html>
+
+
+
+<!-- <div id="groupselect">
 
                 <script>
                     getGroups();
@@ -58,7 +119,7 @@
                         var groupselect = document.getElementById("groupselect");
                         groupselect.innerHTML="";
                         groupselect.textContent="Select your groups:";
-                        var groups = <?php echo json_encode($groups); ?>;
+                        var groups = <?php // echo json_encode($groups); ?>;
                         for(var i = 0; i<groups.length; i++){
                             var formCheck = document.createElement("div");
                             formCheck.setAttribute("class","form-check");
@@ -81,13 +142,4 @@
                 </script>
                
                 
-            </div>
-        </div>
-        <button type="submit" id = "submit" name="submit" class="btn btn-primary">Sign up</button>
-        <small id="emailHelp" class="form-text text-muted"><a href="login">Already have an account? Log in!</a></small>
-    </form>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+            </div> -->
