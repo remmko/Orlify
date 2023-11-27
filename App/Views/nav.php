@@ -1,16 +1,3 @@
-<!doctype html>
-<html lang="ca">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/main.css">
-
-</head>
-
 <body>
 
     <header class="bg-gray-100 h-20">
@@ -51,7 +38,7 @@
         </nav>
 
     </header>
-
+    
 
     <script src="/js/flowbite.min.js"></script>
     <script src="/js/bundle.js"></script>

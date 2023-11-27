@@ -9,6 +9,8 @@
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/main.css">
 
+    <title>Index</title>
+
 </head>
 
 <body class="overflow-hidden">
