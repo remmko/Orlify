@@ -26,6 +26,8 @@ include "../App/Controllers/usermod.php";
 include "../App/Controllers/studentpanel.php";
 include "../App/Controllers/teacherpanel.php";
 include "../App/Controllers/teacherPanelControls.php";
+include "../App/Controllers/CSVpanel.php";
+include "../App/Controllers/uploadCSV.php";
 
 
 /* Creem els diferents models */
@@ -45,6 +47,8 @@ $app->route("checkregister","ctrlCheck");
 $app->route("teacherpanel", "ctrlUCP");
 $app->route("teacherpanelcontrols", "ctrlUCPControls");
 $app->route("changeUser", "ctrlTeacherPanelControls");
+$app->route("CSVpanel", "ctrlCSV");
+$app->route("upload", "ctrlUploadCSV");
 
 
 $app->execute();
