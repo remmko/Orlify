@@ -5,6 +5,7 @@
 
 function ctrlAuth($request, $response, $container){
     
+  
     
     $username = $request -> get(INPUT_POST, "username");
     $password = $request -> get(INPUT_POST, "password");
@@ -16,6 +17,7 @@ function ctrlAuth($request, $response, $container){
         $response -> setSession("auth", "true");
         $response -> setSession("ID", $login["id"]);
         $response -> setSession("role", $login["role"]);
+        $response -> setSession("img", $login["avatar"]);
         $response -> redirect("Location: usermod");
         return $response;
         

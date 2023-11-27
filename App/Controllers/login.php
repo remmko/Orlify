@@ -5,8 +5,13 @@ use \Emeset\Contracts\Container;
 
     function ctrlLogin(Request $request, Response $response, Container $container) :Response{
        
-        $response -> setTemplate("login.php");
-        return $response;
+        if($_SESSION["auth"]=="true"){
+            $response -> redirect("Location: /");
+            return $response;
+        }else{
+            $response -> setTemplate("login.php");
+            return $response;
+        }
         
     }
 

@@ -1,5 +1,6 @@
 <?php 
     function ctrlMod($request, $response, $container){
+     
         if($_SESSION["auth"]=="true"){
             if($_SESSION["role"]=="student"){
                 $response -> redirect("Location: studentpanel");

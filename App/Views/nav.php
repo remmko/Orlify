@@ -11,7 +11,19 @@
                         id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                         data-dropdown-placement="bottom">
                         <img class="w-8 h-8 rounded-full"
-                            src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="user photo">
+                            src="
+                            <?php
+                            if(isset($_SESSION["auth"])&&$_SESSION["auth"]=="true"){
+                                if($_SESSION["img"]==""){
+                                    echo "img/unknown.png";
+
+                                }else{
+                                    echo $_SESSION["img"];
+                                }
+                            }else{ 
+                                echo "img/unknown.png";
+                            }?>
+                            " alt="user photo">
                     </button>
 
                     <!-- Dropdown menu -->

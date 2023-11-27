@@ -16,7 +16,7 @@ class users
     {
 
 
-        $sql = "select id, username, password_hash, role from users where username =:user;";
+        $sql = "select id, username, password_hash, avatar, role from users where username =:user;";
 
         $stm = $this->sql->prepare($sql);
 
