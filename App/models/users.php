@@ -109,12 +109,8 @@ class users
                 $sql = "INSERT INTO user_grups (user_id, grup_id, aproved) VALUES (:userID, :grupID, 0);";
                 $stmt = $this->sql->prepare($sql);
                 $stmt->execute([
-                    ':name' => $name,
-                    ':surename' => $surename,
-                    ':username'=>$username,
-                    ':pass'=>$password,
-                    ':email'=>$email,
-                    ':role'=> "undifined" 
+                    ':userID' => $getID["id"],
+                    ':grupID' => $getGroups[$i]["id"]
                 ]);
             }
         }
