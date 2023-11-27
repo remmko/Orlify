@@ -20,20 +20,16 @@ function ctrlAuth($request, $response, $container){
         return $response;
         
     }else{
-        $response -> setSession("auth", "false");
         $response -> redirect("Location: login");
         return $response;
     }
-        
-       
-    
 }
 
 
 function ctrlCheck($request, $response, $container){
-    $username = $request ->get(INPUT_POST, "login");
+    $username = $request ->get(INPUT_POST, "username");
     $name = $request->get(INPUT_POST, "name");
-    $surename = $request->get(INPUT_POST, "surename");
+    $surename = $request->get(INPUT_POST, "surname");
     $email = $request->get(INPUT_POST, "email");
     $password = hash("sha256",$request->get(INPUT_POST, "password"));
     $getGroups = $container -> get("groups");
@@ -43,13 +39,10 @@ function ctrlCheck($request, $response, $container){
         $grups[$i] = $request->get(INPUT_POST, "group".$i); 
     }
     
-    $img = $request->get("FILES","img");
-    $uploaddir = "img/";
-    $route = $uploaddir.$img["name"];
-    move_uploaded_file($img["tmp_name"], $route);
+  
 
     $register = $container -> get("users");
-    $register = $register -> register($username, $name, $surename, $email, $password, $route, $grups, $getGroups);
+    $register = $register -> register($username, $name, $surename, $email, $password, $grups, $getGroups);
    
     if($register=="succsesful"){
         $response -> redirect("Location: login");

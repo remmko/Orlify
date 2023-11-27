@@ -64,7 +64,7 @@ namespace App\models;
         }
 
 
-        public function register($username, $name, $surename, $email, $password, $route, $grups, $getGroups){
+        public function register($username, $name, $surename, $email, $password, $grups, $getGroups){
 
             $sql = "select username, email from users";
             $stm = $this->sql->prepare($sql);
@@ -84,8 +84,8 @@ namespace App\models;
                 }
             }
 
-            $sql = "INSERT INTO users (name, last_name, username, password_hash, email, avatar, role) 
-            VALUES (:name, :surename, :username, :pass, :email, :img, :role);";
+            $sql = "INSERT INTO users (name, last_name, username, password_hash, email, role) 
+            VALUES (:name, :surename, :username, :pass, :email,  :role);";
 
 
             try {
@@ -96,7 +96,6 @@ namespace App\models;
                     ':username'=>$username,
                     ':pass'=>$password,
                     ':email'=>$email,
-                    ':img'=>$route,
                     ':role'=> "undifined" 
                 ]);
 
