@@ -9,6 +9,10 @@ use \Emeset\Contracts\Container;
             $response -> redirect("Location: /");
             return $response;
         }else{
+            if(isset($_GET["faliure"])&&$_GET["faliure"]=="true"){
+                $faliure = "true";
+                $response -> set("faliure", $faliure);
+            }
             $response -> setTemplate("login.php");
             return $response;
         }

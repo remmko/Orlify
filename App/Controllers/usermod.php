@@ -3,20 +3,18 @@
      
         if($_SESSION["auth"]=="true"){
             if($_SESSION["role"]=="student"){
-                $response -> redirect("Location: studentpanel");
-                return $response;
+                $link = "Location: studentpanel";
             }elseif($_SESSION["role"]=="teacher"){
-                $response -> redirect("Location: teacherpanel");
-                return $response;
+                $link = "Location: teacherpanel";
             }elseif($_SESSION["role"]=="manager"){
-                $response -> redirect("Location: teacherpanel");
-                return $response;
+                $link = "Location: teacherpanel";
             }elseif($_SESSION["role"]=="admin"){
-                $response -> redirect("Location: adminpanel");
-                return $response;
+                $link = "Location: adminpanel";
             }
         }else{
-            $response -> redirect("Location: login");
-            return $response;
+            $link = "Location: login";
         }
+
+        $response -> redirect($link);
+        return $response;
     }

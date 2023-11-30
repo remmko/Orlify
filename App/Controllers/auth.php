@@ -22,7 +22,7 @@ function ctrlAuth($request, $response, $container){
         return $response;
         
     }else{
-        $response -> redirect("Location: login");
+        $response -> redirect("Location: login?faliure=true");
         return $response;
     }
 }

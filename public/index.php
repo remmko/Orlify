@@ -28,6 +28,7 @@ include "../App/Controllers/teacherpanel.php";
 include "../App/Controllers/teacherPanelControls.php";
 include "../App/Controllers/CSVpanel.php";
 include "../App/Controllers/uploadCSV.php";
+include "../App/Controllers/personaldata.php";
 
 
 /* Creem els diferents models */
@@ -49,6 +50,7 @@ $app->route("teacherpanelcontrols", "ctrlUCPControls");
 $app->route("changeUser", "ctrlTeacherPanelControls");
 $app->route("CSVpanel", "ctrlCSV");
 $app->route("upload", "ctrlUploadCSV");
+$app->route("personaldata", "ctrlPersonalData");
 
 
 $app->execute();
