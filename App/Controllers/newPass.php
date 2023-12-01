@@ -12,8 +12,7 @@
         $container->get("users")->changePass($pass, $userId);
 
 
-        $response->redirect("location: /");
-
+        $response->setTemplate("complete-pass.php");
         return $response;
         
     }

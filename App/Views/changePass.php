@@ -36,7 +36,16 @@
                             </label>
                             <input type="password" name="password" id="password"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-xl focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                required
+                                placeholder="••••••••" required
+                            >
+                        </div>
+                        <div>
+                            <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Repeteix la contrasenya
+                            </label>
+                            <input type="password" name="confirm-password" id="confirm-password"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-xl focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="••••••••" required
                             >
                         </div>
 
@@ -51,4 +60,40 @@
         </div>
     </section>
 
+    <script src="/js/flowbite.min.js"></script>
+    <script src="/js/bundle.js"></script>
+    <script src="/js/index.js"></script>
+    <!-- <script>
+        // Password requirements
+        document.addEventListener("DOMContentLoaded", function () {
+        const regex =
+            /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/])[a-zA-Z0-9-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/]{6,13}$/;
+
+        const form = document.querySelector("form");
+        const passwordInput = document.getElementById("password");
+        const confirmPasswordInput = document.getElementById("confirm-password");
+
+        form.addEventListener("submit", function (event) {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (!regex.test(password)) {
+                alert(
+                    "La contrasenya ha de tenir entre 6 i 13 caràcters, almenys una majúscula, una minúscula, un número i un caràcter especial.",
+                );
+                event.preventDefault();
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Les contrasenyes no coincideixen.");
+                event.preventDefault();
+                return;
+                }
+            });
+        });
+    </script> -->
+
 </body>
+
+</html>
