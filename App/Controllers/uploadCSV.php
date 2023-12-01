@@ -2,7 +2,6 @@
 function ctrlUploadCSV($request, $response, $container)
 {
     $fitcher = $request->get("FILES", "fitcher");
-
     $users = $container->get("users");
 
     if (file_exists($fitcher["tmp_name"])) {
