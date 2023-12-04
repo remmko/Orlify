@@ -9,7 +9,7 @@ function ctrlUploadCSV($request, $response, $container)
         $fileContents = file_get_contents($fitcher["tmp_name"]);
 
         if ($fileContents === false) {
-            echo "Error reading the file.";
+            echo "Error llegint el fitxer.";
         } else {
             // Output the parsed CSV data
             echo "<pre>";
@@ -29,12 +29,12 @@ function ctrlUploadCSV($request, $response, $container)
                     // Additional check for password
                     if ($password === 'null') {
                         // Handle the case where password is null, e.g., execute a different query
-                        echo "Error: Password is null in row $i. Handling this case differently...\n";
+                        echo "Error a la fila $i: La contrasenya és nul·la. Tractant aquest cas de manera diferent...\n";
                         // Add your logic here
                         continue;  // Skip the rest of the loop for this row
                     }
                 } else {
-                    echo "Error: Invalid CSV row. Insufficient data.\n";
+                    echo "Error a la fila $i: Fila CSV no vàlida. Dades insuficients.\n";
                     continue;  // Skip the rest of the loop for this row
                 }
 
@@ -48,47 +48,47 @@ function ctrlUploadCSV($request, $response, $container)
                     $isEmailUnique = $users->isEmailUnique($email);
 
                     if ($role == '') {
-                        echo "Role is empty, assuming existing student '$username' aditional group.\n";
+                        echo "El rol és buit, assumint grup adicional per a l'estudiant '$username'.\n";
                         $voidRole = true;
                     } elseif ($role !== 'student') {
                         if ($role == 'role') {
                             continue;  // Skip the rest of the loop for this row
                         }
-                        echo "Error on row $i: Invalid role '$role'. Only 'student' role is accepted.\n";
+                        echo "Error a la fila $i: rol '$role' no vàlid. Només s'accepta el rol d'estudiant.\n";
                         continue;  // Skip the rest of the loop for this row
                     }
 
                     // Perform simple validations
                     if (!$isUsernameUnique && $voidRole == false) {
-                        echo "Error on row $i: Username '$username' already exists.\n";
+                        echo "Error a la fila $i: El nom d'usuari '$username' ja existeix.\n";
                         continue;  // Skip the rest of the loop for this row
                     }
 
                     if (!$isEmailUnique && $voidRole == false) {
-                        echo "Error on row $i: Email '$email' already exists.\n";
+                        echo "Error a la fila $i: el correu electrònic '$email' ja existeix.\n";
                         continue;  // Skip the rest of the loop for this row
                     }
 
                     
                 } else {
-                    echo "Error on row $i: Invalid CSV row. Insufficient data.\n";
+                    echo "Error a la fila $i: fila CSV no vàlida. Dades insuficients.\n";
                     continue;  // Skip the rest of the loop for this row
                 }
 
                 if ($voidRole) {
                     $voidRole = $users->voidRole($rowData);
                     if ($voidRole) {
-                        echo "User '$username' on row $i added successfully to class '$row[6]'.\n";
+                        echo "L'usuari '$username' a la fila $i s'ha afegit correctament a la classe '$row[6]'.\n";
                     } else {
-                        echo "Error on row $i: User '$username' could not be added  to class '$row[6]' .\n";
+                        echo "Error a la fila $i: l'usuari '$username' no s'ha pogut afegir a la classe '$row[6]'.\n";
                         continue;
                     }
                 } else {
                     $dataResult = $users->uploadCSVUserData($rowData);
                     if ($dataResult) {
-                        echo "User '$username' on row $i added successfully.\n";
+                        echo "L'usuari '$username' a la fila $i s'ha afegit correctament.\n";
                     } else {
-                        echo "Error on row $i: User '$username' could not be added.\n";
+                        echo "Error a la fila $i: no s'ha pogut afegir l'usuari '$username'.\n";
                         continue;
                     }
                     echo "<br>";
@@ -99,7 +99,7 @@ function ctrlUploadCSV($request, $response, $container)
             echo "</pre>";
         }
     } else {
-        echo "The file does not exist.";
+        echo "El fitxer no existeix.";
     }
 
     $response->setTemplate("CSVpanel.php");
