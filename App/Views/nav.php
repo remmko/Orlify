@@ -7,24 +7,30 @@
             <img src="/img/logo.png" alt="Orlify Logo" class="w-28 ml-20">
         </a>
 
-        <nav class="flex items-center space-x-3">
-            <button type="button"
-                class="flex text-sm rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 mr-20"
-                id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
-                data-dropdown-placement="bottom">
-                <img class="w-8 h-8 rounded-full"
-                    src="<?php
-                    if(isset($_SESSION["auth"]) && $_SESSION["auth"]=="true"){
-                        if($_SESSION["img"]==""){
-                            echo "img/unknown.png";
-                        } else {
-                            echo $_SESSION["img"];
-                        }
-                    } else { 
-                        echo "img/unknown.png";
-                    } ?>"
-                    alt="user photo">
-            </button>
+        <nav class="border-none dark:bg-gray-900 ml-auto">
+            
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 mr-20">
+              
+                <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <button type="button"
+                        class="flex text-sm rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                        id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                        data-dropdown-placement="bottom">
+                        <img class="w-8 h-8 rounded-full"
+                            src="
+                            <?php
+                            if(isset($_SESSION["auth"])&&$_SESSION["auth"]=="true"){
+                                if($_SESSION["img"]==""){
+                                    echo "img/unknown.png";
+
+                                }else{
+                                    echo $_SESSION["img"];
+                                }
+                            }else{ 
+                                echo "img/unknown.png";
+                            }?>
+                            " alt="user photo">
+                    </button>
 
             <!-- Dropdown menu -->
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg" id="user-dropdown">

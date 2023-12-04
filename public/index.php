@@ -34,6 +34,7 @@ include "../App/Controllers/changePass.php";
 include "../App/Controllers/newPass.php";
 include "../App/Controllers/changeImage.php";
 
+include "../App/Controllers/personaldata.php";
 
 
 /* Creem els diferents models */
@@ -55,11 +56,6 @@ $app->route("teacherpanelcontrols", "ctrlUCPControls");
 $app->route("changeUser", "ctrlTeacherPanelControls");
 $app->route("CSVpanel", "ctrlCSV");
 $app->route("upload", "ctrlUploadCSV");
-$app->route("getMail", "ctrlGetMail");
-$app->post("sendMail", "ctrlSendMail");
-$app->route("changePass", "ctrlChangePass");
-$app->route("newPass", "ctrlNewPass");
-$app->route("changeImage", "ctrlChangeImage");
 
 
 $app->execute();

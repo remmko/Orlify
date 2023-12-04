@@ -14,7 +14,10 @@
 
 </head>
 
-
+<?php if($faliure=="true"){
+        include "wrong.php";
+}
+    ?>
 
 <body class="bg-gray-50 dark:bg-gray-900">
 
