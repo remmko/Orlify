@@ -32,7 +32,7 @@ class users {
     public function getInfo($userID) {
 
 
-        $sql = "select name, last_name, email, avatar from users where id =:userID;";
+        $sql = "select * from users where id =:userID;";
 
         $stm = $this->sql->prepare($sql);
 
@@ -308,4 +308,13 @@ class users {
 
         $stm->execute([":password" => $password, ":id" => $id]);
     }
+
+
+    public function changeImage($avatar) {
+        $sql = "UPDATE users SET avatar = :avatar WHERE id = :id";
+
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([":avatar" => $avatar, ":id" => $_SESSION["ID"]]);
+    }
+
 }

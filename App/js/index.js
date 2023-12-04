@@ -17,7 +17,7 @@ $(document).ready(function () {
   const passwordInput = $("#password");
   const confirmPasswordInput = $("#confirm-password");
 
-  form.on("submit", function (event) {
+  form.on("check", function (event) {
     const password = passwordInput.val();
     const confirmPassword = confirmPasswordInput.val();
 
