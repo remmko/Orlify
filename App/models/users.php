@@ -42,7 +42,6 @@ class users
 
         $stm->execute([':userID' => $userID]);
         $result = $stm->fetch(\PDO::FETCH_ASSOC);
-
         return $result;
     }
 
@@ -63,7 +62,7 @@ class users
 
 
 
-        public function register($username, $name, $surename, $email, $password, $grups, $getGroups){
+        public function register($username, $name, $surename, $email, $password, $grups, $getGroups, $filename){
 
             $sql = "select username, email from users";
             $stm = $this->sql->prepare($sql);
@@ -83,8 +82,8 @@ class users
                 }
             }
 
-            $sql = "INSERT INTO users (name, last_name, username, password_hash, email, role) 
-            VALUES (:name, :surename, :username, :pass, :email,  :role);";
+            $sql = "INSERT INTO users (name, last_name, username, password_hash, email, role, avatar) 
+            VALUES (:name, :surename, :username, :pass, :email,  :role, :route);";
 
 
         try {
@@ -95,7 +94,8 @@ class users
                 ':username' => $username,
                 ':pass' => $password,
                 ':email' => $email,
-                ':role' => "undifined"
+                ':role' => "undifined",
+                ':route' => "img/".$filename
             ]);
         } catch (PDOException $e) {
             echo "Registration error: " . $e->getMessage();

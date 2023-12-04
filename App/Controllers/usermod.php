@@ -10,6 +10,8 @@
                 $link = "Location: teacherpanel";
             }elseif($_SESSION["role"]=="admin"){
                 $link = "Location: adminpanel";
+            }else{
+                $link = "Location: index.php";
             }
         }else{
             $link = "Location: login";

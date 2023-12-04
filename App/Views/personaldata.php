@@ -8,9 +8,8 @@
 </head>
 <body>
     <?php include "nav.php"?>
-
     <div>
-         <img src="<?php echo $userInfo['avatar']?>" alt="">
+         <img src=<?php echo $userInfo["avatar"]?> alt="">
     </div>
 
 </body>
