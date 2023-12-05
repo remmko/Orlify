@@ -240,7 +240,7 @@ class users {
             if ($uploadGrupUser) {
                 return true;
             } else {
-                echo "User '$csvData[5]' has not been added successfully to class '$csvData[6]'.\n";
+                echo "L'usuari '$csvData[5]' no s'ha afegit correctament a la classe '$csvData[6]'.\n";
                 return false;
             }
         } else {
@@ -258,7 +258,7 @@ class users {
             if ($uploadGrupUser) {
                 return true;
             } else {
-                echo "User '$csvData[5]' has not been added successfully to class '$csvData[6]'.\n";
+                echo "L'usuari '$csvData[5]' no s'ha afegit correctament a la classe '$csvData[6]'.\n";
                 return false;
             }
         } else {
