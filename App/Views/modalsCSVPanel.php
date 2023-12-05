@@ -47,23 +47,23 @@
             </div>
             <!-- Modal body -->
             <div class="flex-1 p-4 md:p-5 overflow-y-auto">
-                <p class="text-l font-semibold text-gray-900 dark:text-white">¿Què és un fitxer CSV?</p>
+                <p class="text-l font-semibold text-gray-900 dark:text-white">Què és un fitxer CSV?</p>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                     Un fitxer CSV (valors separats per comes) és una manera senzilla i àmpliament utilitzada d'emmagatzemar dades tabulars, com ara un full de càlcul o una base de dades, en text sense format. S'anomena “separat per comes” perquè els valors del fitxer estan separats per comes.
                 </p>
-                <p class="text-l font-semibold text-gray-900 dark:text-white">¿Com puc fer un fitcher CSV?</p>
+                <p class="text-l font-semibold text-gray-900 dark:text-white">Com puc fer un fitcher CSV?</p>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                     Podeu crear un fitxer CSV utilitzant un editor de text, com el Bloc de notes de Windows, o un editor de fulls de càlcul, com el Microsoft Excel. El fitxer CSV ha de tenir una extensió de fitxer .csv. Per exemple, podeu anomenar el fitxer "students.csv".
                 </p>
-                <p class="text-l font-semibold text-gray-900 dark:text-white">¿Per què CSV?</p>
+                <p class="text-l font-semibold text-gray-900 dark:text-white">Per què CSV?</p>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                     Els fitxers CSV són fàcils de crear i llegir per humans. Són útils per a l'emmagatzematge de dades tabulars i són compatibles amb moltes aplicacions. Per exemple, podeu importar el fitxer CSV a una base de dades o un full de càlcul, com el Microsoft Excel.
                 </p>
-                <p class="text-l font-semibold text-gray-900 dark:text-white">¿Hi han regles?</p>
+                <p class="text-l font-semibold text-gray-900 dark:text-white">Hi han regles?</p>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                     Sí, hi han regles. El fitxer CSV ha de tenir una fila d'encapçalament que defineixi els noms de columna per a totes les dades de la taula. Aquesta fila d'encapçalament ha d'estar separada per comes i ha de contenir els noms de columna en el mateix ordre que les dades de la taula. El fitxer CSV ha de tenir una fila per a cada fila de dades de la taula. Aquestes files han d'estar separades per comes i han de contenir les dades de la taula en el mateix ordre que els noms de columna de la fila d'encapçalament.
                 </p>
-                <p class="text-l font-semibold text-gray-900 dark:text-white">¿Com construeixo un el fitcher CSV per aquest cas?</p>
+                <p class="text-l font-semibold text-gray-900 dark:text-white">Com construeixo un el fitcher CSV per aquest cas?</p>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                     Al botó anomenat "Exemple CSV" es mostra un exemple de com ha de ser el fitxer CSV per aquest cas. Aquest exemple es pot copiar i enganxar i utilitzar com a plantilla per a la creació del fitxer CSV. En aquest cas hi tenim 7 columnes:
                 </p>
@@ -99,7 +99,7 @@
                     </ul>
                 </ul>
 
-                <p class="text-l font-semibold text-gray-900 dark:text-white">¿Com afegeixo grups addicionals?</p>
+                <p class="text-l font-semibold text-gray-900 dark:text-white">Com afegeixo grups addicionals?</p>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                     Per afegir grups addicionals a un alumne existeixen 2 maneres:
                 </p>
