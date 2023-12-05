@@ -34,6 +34,7 @@ include "../App/Controllers/changePass.php";
 include "../App/Controllers/newPass.php";
 include "../App/Controllers/changeImage.php";
 include "../App/Controllers/updateInfoUser.php";
+include "../App/Controllers/error.php";
 
 
 
@@ -62,6 +63,6 @@ $app->route("changePass", "ctrlChangePass");
 $app->route("newPass", "ctrlNewPass");
 $app->route("changeImage", "ctrlChangeImage");
 $app->post("updateInfoUser", "ctrlUpdateInfoUser");
-
+$app->route("error", "ctrlError");
 
 $app->execute();

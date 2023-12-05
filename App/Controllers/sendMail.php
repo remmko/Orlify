@@ -26,7 +26,7 @@ function ctrlSendMail($request, $response, $container) {
         $mail->addAddress($email);
 
         // Link with the token
-        $resetLink = "http://localhost:8080/changePass?token=" . $token;
+        $resetLink = "https://orlify.remmko.online/changePass?token=" . $token;
 
         $mail->isHTML(true);
 

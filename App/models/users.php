@@ -29,6 +29,24 @@ class users {
     }
 
 
+
+    public function tokenExists($token) {
+        $sql = "SELECT reset_token FROM users WHERE reset_token = :token";
+
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([":token" => $token]);
+        $result = $stm->fetch(\PDO::FETCH_ASSOC);
+     
+       
+
+        if(is_array($result) && $result["reset_token"] == $token) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     public function getInfo($userID) {
 
 
