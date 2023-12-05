@@ -1,10 +1,8 @@
-<body>
-
     <header class="bg-gray-100 h-20 flex items-center justify-between px-4">
 
         <!-- Logo a l'esquerra -->
         <a href="/">
-            <img src="/img/logo.png" alt="Orlify Logo" class="w-28 ml-20">
+            <img src="/img/logo.png" alt="Orlify Logo" class="w-12 ml-20">
         </a>
 
         <nav class="flex items-center space-x-3">
@@ -58,13 +56,6 @@
                                     Pujada de CSV
                                 </a>
                             </li>  
-                        <?php } elseif($_SESSION["role"]=="student"){ ?>
-                            <li>
-                                <a href="/studentpanel"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                    Panel d'Alumne
-                                </a>
-                            </li>
                         <?php } ?>
                         <li>
                             <a href="/logout"
@@ -90,7 +81,3 @@
             </div>
         </nav>
     </header>
-
-    <script src="/js/flowbite.min.js"></script>
-    <script src="/js/bundle.js"></script>
-</body>

@@ -16,6 +16,8 @@
     </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
 </head>
 
 <body>
@@ -59,7 +61,7 @@
 
               if(role == "student"){
                 panel.textContent = "Student Panel";
-                panel.href = "studentpanel";
+                panel.href = "personaldata";
                 orlas.textContent = "Mis Orlas";
                 orlas.href = "studentorlas";
                 

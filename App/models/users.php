@@ -317,4 +317,12 @@ class users {
         $stm->execute([":avatar" => $avatar, ":id" => $_SESSION["ID"]]);
     }
 
+
+    public function updateInfoUser($name, $last_name) {
+        $sql = "UPDATE users SET name = :name, last_name = :last_name WHERE id = :id";
+
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([":name" => $name, ":last_name" => $last_name, ":id" => $_SESSION["ID"]]);
+    }
+
 }
