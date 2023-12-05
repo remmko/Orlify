@@ -19,7 +19,7 @@
         // update the image from the nav bar
         $_SESSION["img"] = $image;
 
-        $response->redirect("location: studentpanel");
+        $response->redirect("location: personaldata");
         $response->set("result", $result);
         return $response;
     }

@@ -5,15 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/main.css">
+
 </head>
 
 <?php require_once("nav.php") ?>
 
 <body>
-    <form id="userForm" method="POST" action="changeUser">
+    <form id="userForm" method="POST" action="changeUser" class="mx-auto max-w-screen-lg mt-8">
         <table id="userDataTable">
             <thead>
                 <tr>
@@ -34,7 +38,7 @@
                         <td><?= $user['email'] ?></td>
                         <td><?= $user['grup_name'] ?></td>
                         <td>
-                            <select class="action-select" name="selectedData[]">
+                            <select class="action-select" name="selectedData[]" style="border: 1px solid black">
                                 <option value=""></option>
                                 <option value="Accept">Acceptar</option>
                                 <option value="Deny">Denegar</option>
@@ -46,8 +50,19 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <input type="submit" value="save">
+
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            Guardar
+        </button>
     </form>
+
+
+    <script src="/js/flowbite.min.js"></script>
+    <script src="/js/bundle.js"></script>
+    <script src="/js/index.js"></script>
+
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
 
     <script>
         // Initialize DataTable

@@ -9,6 +9,8 @@
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/main.css">
 
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+
     <title>Index</title>
 
 </head>
@@ -75,8 +77,9 @@
 
 
 
-
+    <script src="/js/flowbite.min.js"></script>
     <script src="/js/bundle.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 
 </html>

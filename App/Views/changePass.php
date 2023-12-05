@@ -9,6 +9,9 @@
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/main.css">
+    
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+
 
     <title>Recupera la contrasenya</title>
 

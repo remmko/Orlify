@@ -1,13 +1,16 @@
 <?php
-    function ctrlPersonalData($request, $response, $container){
-        if($_SESSION["auth"]=="true"){
-            $getInfo = $container -> get("users");
-            $userInfo = $getInfo -> getInfo($_SESSION["ID"]);
-            $response -> set("userInfo", $userInfo);
+    function ctrlPersonalData($request, $response, $container) {
+        if($_SESSION["auth"] == "true") {
+           
+            $getInfo = $container->get("users");
+            
+            $result = $getInfo->getInfo($_SESSION["ID"]);
 
-            $response -> setTemplate("personaldata.php");
+          
+            $response->setTemplate("personalData.php");
+            $response->set("result", $result);
             return $response;
-        }else{
+        } else {
             $response -> redirect("Location: login");
             return $response;
         }

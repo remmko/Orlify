@@ -3,7 +3,8 @@
      
         if($_SESSION["auth"]=="true"){
             if($_SESSION["role"]=="student"){
-                $link = "Location: studentpanel";
+                $response -> redirect("Location: personaldata");
+                return $response;
             }elseif($_SESSION["role"]=="teacher"){
                 $link = "Location: teacherpanel";
             }elseif($_SESSION["role"]=="manager"){

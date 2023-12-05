@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/camera.css">
 
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+
     <title>Registre</title>
 
 </head>

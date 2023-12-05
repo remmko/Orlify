@@ -23,7 +23,7 @@ include "../App/Controllers/index.php";
 include "../App/Controllers/login.php";
 include "../App/Controllers/auth.php";
 include "../App/Controllers/usermod.php";
-include "../App/Controllers/studentpanel.php";
+include "../App/Controllers/personalData.php";
 include "../App/Controllers/teacherpanel.php";
 include "../App/Controllers/teacherPanelControls.php";
 include "../App/Controllers/CSVpanel.php";
@@ -33,6 +33,7 @@ include "../App/Controllers/sendMail.php";
 include "../App/Controllers/changePass.php";
 include "../App/Controllers/newPass.php";
 include "../App/Controllers/changeImage.php";
+include "../App/Controllers/updateInfoUser.php";
 
 include "../App/Controllers/personaldata.php";
 
@@ -47,15 +48,21 @@ $app->route("", "ctrlIndex");
 $app->route("login", "ctrlLogin");
 $app->route("auth", "ctrlAuth");
 $app->route("usermod", "ctrlMod");
-$app->route("studentpanel", "ctrlStudent");
 $app->route("logout","ctrlLogout");
 $app->route("register", "ctrlRegister");
 $app->route("checkregister","ctrlCheck");
+$app->route("personaldata", "ctrlPersonalData");
 $app->route("teacherpanel", "ctrlUCP");
 $app->route("teacherpanelcontrols", "ctrlUCPControls");
 $app->route("changeUser", "ctrlTeacherPanelControls");
 $app->route("CSVpanel", "ctrlCSV");
 $app->route("upload", "ctrlUploadCSV");
+$app->route("getMail", "ctrlGetMail");
+$app->post("sendMail", "ctrlSendMail");
+$app->route("changePass", "ctrlChangePass");
+$app->route("newPass", "ctrlNewPass");
+$app->route("changeImage", "ctrlChangeImage");
+$app->post("updateInfoUser", "ctrlUpdateInfoUser");
 
 
 $app->execute();
