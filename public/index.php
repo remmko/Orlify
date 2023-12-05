@@ -23,7 +23,7 @@ include "../App/Controllers/index.php";
 include "../App/Controllers/login.php";
 include "../App/Controllers/auth.php";
 include "../App/Controllers/usermod.php";
-include "../App/Controllers/personalData.php";
+include "../App/Controllers/personaldata.php";
 include "../App/Controllers/teacherpanel.php";
 include "../App/Controllers/teacherPanelControls.php";
 include "../App/Controllers/CSVpanel.php";
@@ -35,6 +35,7 @@ include "../App/Controllers/newPass.php";
 include "../App/Controllers/changeImage.php";
 include "../App/Controllers/updateInfoUser.php";
 include "../App/Controllers/error.php";
+
 
 
 
@@ -64,5 +65,6 @@ $app->route("newPass", "ctrlNewPass");
 $app->route("changeImage", "ctrlChangeImage");
 $app->post("updateInfoUser", "ctrlUpdateInfoUser");
 $app->route("error", "ctrlError");
+$app -> route("personaldata", "ctrlPersonalData");
 
 $app->execute();

@@ -7,7 +7,7 @@
             $result = $getInfo->getInfo($_SESSION["ID"]);
 
           
-            $response->setTemplate("personalData.php");
+            $response->setTemplate("personaldata.php");
             $response->set("result", $result);
             return $response;
         } else {
