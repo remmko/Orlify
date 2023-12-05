@@ -13,7 +13,7 @@
   }
 </style>
 
-<body class="bg-gray-100 overflow-hidden">
+<body class="bg-gray-50 overflow-hidden">
   <?php require_once("nav.php") ?>
   <div class="items-center justify-center">
 
