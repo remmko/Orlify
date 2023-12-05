@@ -35,7 +35,6 @@ include "../App/Controllers/newPass.php";
 include "../App/Controllers/changeImage.php";
 include "../App/Controllers/updateInfoUser.php";
 
-include "../App/Controllers/personaldata.php";
 
 
 /* Creem els diferents models */
