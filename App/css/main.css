@@ -1,18 +1,13 @@
-
-
-
 /*------------------------------------------------------------------
 
 1. Tailwind
 2. Navbar
 3. Main page/index
 4. Forget Password
+5. Personal Information
+6. Manager Panel
 
 -----------------------------------------------------*/
-
-
-
-
 
 /*------------------------------------------------------------------
 1. Tailwind
@@ -21,8 +16,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 /*------------------------------------------------------------------
 2. Navbar
 -------------------------------------------------------------------*/
@@ -30,7 +23,6 @@ header {
     display: flex;
     justify-content: space-between;
 }
-
 
 /*------------------------------------------------------------------
 3. Main page/index
@@ -42,43 +34,30 @@ header {
     align-items: center;
 }
 
-
-
 /* ########## Sidebar */
 .sidebar {
     height: 600px;
 }
 
 .left-menu {
-    background: linear-gradient(
-        135deg,
-        #9c75f7,
-        #ce74f1
-    );
+    background: linear-gradient(135deg, #9c75f7, #ce74f1);
     width: 200px;
     height: auto;
     border-radius: 15px;
-    cursor: pointer;
 }
 
 .left-menu ul {
     padding: 20px 0 20px 20px;
 }
 
-
 /* ########## Central */
 .central {
-    background: linear-gradient(
-        135deg,
-        #9c75f7,
-        #ce74f1
-    );
+    background: linear-gradient(135deg, #9c75f7, #ce74f1);
     height: 600px;
     max-width: 1000px;
     width: 100%;
     border-radius: 15px;
 }
-
 
 /* ######### Right Buttons */
 .right-buttons {
@@ -87,11 +66,7 @@ header {
 }
 
 .edit button {
-    background: linear-gradient(
-        135deg,
-        #9c75f7,
-        #ce74f1
-    );
+    background: linear-gradient(135deg, #9c75f7, #ce74f1);
     font-size: 18px;
     margin-top: 80px;
     height: 35px;
@@ -102,11 +77,7 @@ header {
 
 .template button,
 .download button {
-    background: linear-gradient(
-        135deg,
-        #9c75f7,
-        #ce74f1
-    );
+    background: linear-gradient(135deg, #9c75f7, #ce74f1);
     font-size: 18px;
     margin-top: 20px;
     height: 35px;
@@ -115,7 +86,39 @@ header {
     border-radius: 15px;
 }
 
+/* ########## RESPOSIVE */
+@media screen and (max-width: 1500px) {
+    .central {
+        margin: 0 10px 0 10px;
+    }
+}
 
+@media screen and (max-width: 1050px) {
+    body.overflow-hidden {
+        overflow: auto !important;
+    }
+
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .central {
+        order: 1;
+    }
+
+    .sidebar,
+    .right-buttons {
+        width: 100%;
+        margin-top: 20px;
+        height: auto;
+        order: 2;
+    }
+
+    .edit button {
+        margin-top: 20px;
+    }
+}
 
 /*------------------------------------------------------------------
 4. Forget Password
@@ -150,3 +153,54 @@ header {
     text-decoration: none;
 }
 
+/*------------------------------------------------------------------
+5. Personal Information
+-------------------------------------------------------------------*/
+.main {
+    position: relative;
+}
+
+.principal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 5%);
+}
+
+.image {
+    max-width: 200px;
+    max-height: 200px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info input {
+    width: 100%;
+    outline: none;
+}
+
+.image-input {
+    background-image: url('../img/lapiz.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 20px;
+}
+
+/*------------------------------------------------------------------
+6. Manager Panel
+-------------------------------------------------------------------*/
+.create-orla {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 40%);
+}
+
+.create-orla h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}

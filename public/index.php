@@ -35,7 +35,8 @@ include "../App/Controllers/newPass.php";
 include "../App/Controllers/changeImage.php";
 include "../App/Controllers/updateInfoUser.php";
 include "../App/Controllers/error.php";
-
+include "../App/Controllers/managerPanel.php";
+include "../App/Controllers/newOrla.php";
 
 
 
@@ -49,9 +50,9 @@ $app->route("", "ctrlIndex");
 $app->route("login", "ctrlLogin");
 $app->route("auth", "ctrlAuth");
 $app->route("usermod", "ctrlMod");
-$app->route("logout","ctrlLogout");
+$app->route("logout", "ctrlLogout");
 $app->route("register", "ctrlRegister");
-$app->route("checkregister","ctrlCheck");
+$app->route("checkregister", "ctrlCheck");
 $app->route("personaldata", "ctrlPersonalData");
 $app->route("teacherpanel", "ctrlUCP");
 $app->route("teacherpanelcontrols", "ctrlUCPControls");
@@ -65,6 +66,9 @@ $app->route("newPass", "ctrlNewPass");
 $app->route("changeImage", "ctrlChangeImage");
 $app->post("updateInfoUser", "ctrlUpdateInfoUser");
 $app->route("error", "ctrlError");
-$app -> route("personaldata", "ctrlPersonalData");
+$app->route("personaldata", "ctrlPersonalData");
+$app->route("managerpanel", "ctrlManagerPanel");
+$app->route("neworla", "ctrlNewOrla");
+
 
 $app->execute();

@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
 
-    <title>Index</title>
+    <title>Orlify</title>
 
 </head>
 
@@ -27,18 +27,23 @@
             <div class="left-menu text-xl">
                 <ul>
                     <li>Classes Publiques</li>
-                    <ul class="public text-base">
-                        <li>DAW2</li>
+
+                    <ul class="text-base">
+                        <?php foreach ($orles as $value) { ?>
+                            <li class="cursor-pointer mt-4">
+                                <?= $value['orla_name'] ?>
+                            </li>
+                        <?php } ?>
                     </ul>
-                    <br>
                 </ul>
             </div>
         </div>
-        
+
+
 
         <!-- Central -->
         <div class="central">
-            
+
         </div>
 
         <!-- Right Buttons -->
