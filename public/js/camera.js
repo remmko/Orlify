@@ -3,7 +3,7 @@ var canvas = null;
 var photo = null;
 var startbutton = null;
 
-var width = 200;    // We will scale the photo width to this
+var width = 200;    // scale the photo width to this
 var height = 200;     // This will be computed based on the input stream
 
 function startup() {
