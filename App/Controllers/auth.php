@@ -52,7 +52,7 @@ function ctrlCheck($request, $response, $container){
         file_put_contents($_SERVER['DOCUMENT_ROOT'] ."/img/".$filename, $file);
 
     }catch(Exception $e){
-        echo "Error";
+        echo "Error to add photo";
     }
  
 
