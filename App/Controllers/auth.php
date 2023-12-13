@@ -76,9 +76,9 @@ function ctrlCheck($request, $response, $container){
     
         if($register=="succsesful"){
             $response -> redirect("Location: login");
-        }elseif($register == "emailExists"){
+        }elseif($register == "email"){
             $response -> redirect("Location: register?email=true");
-        }elseif($register == "usernameExists"){
+        }elseif($register == "username"){
             $response -> redirect("Location: register?username=true");
         }
         return $response;

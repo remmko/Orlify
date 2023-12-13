@@ -30,7 +30,8 @@
 
             $response -> set("result",$result);
 
-            $response -> setTemplate("teacherpanel.php");
+            $response -> redirect("Location: teacherpanel");
+            
             //  
             return $response;
         }else{

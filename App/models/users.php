@@ -84,23 +84,29 @@ class users
     public function register($username, $name, $surename, $email, $password, $grups, $getGroups, $filename)
     {
 
-        $sql = "select username, email from users";
+        $sql = "select count(*) as username from users where username = :username";
         $stm = $this->sql->prepare($sql);
 
-        $stm->execute();
-        $tasks = array();
+        $stm->execute(
+            [
+                ':username' => $username,
+        ]);
+        $result = $stm->fetch(\PDO::FETCH_ASSOC);
 
-        while ($result = $stm->fetch(\PDO::FETCH_ASSOC)) {
-            $tasks[] = $result;
-        }
 
+        $sql = "select count(*) as email from users where username = :username";
+        $stm = $this->sql->prepare($sql);
 
-        for ($i = 0; $i < count($tasks); $i++) {
-            if ($tasks[$i]["username"] == $username) {
-                return "usernameExists";
-            } else if ($tasks[$i]["email"] == $email) {
-                return "emailExists";
-            }
+        $stm->execute(
+            [
+                ':username' => $username,
+        ]);
+        $result = $stm->fetch(\PDO::FETCH_ASSOC);
+
+        if($result["usernmane"] > 0){
+            return "username";
+        }elseif($result["email"] > 0){
+            return "email";
         }
 
         $sql = "INSERT INTO users (name, last_name, username, password_hash, email, role, avatar) 
