@@ -76,8 +76,7 @@ function takepicture() {
   
     var data = canvas.toDataURL('image/png');
     photo.setAttribute('src', data);
-    hidden.value = data;
-    console.log(hidden.value);
+    hidden.textContent = data;
   } else {
     clearphoto();
   }

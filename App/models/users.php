@@ -103,8 +103,8 @@ class users
             }
         }
 
-        $sql = "INSERT INTO users (name, last_name, username, password_hash, email, role) 
-            VALUES (:name, :surename, :username, :pass, :email,  :role);";
+        $sql = "INSERT INTO users (name, last_name, username, password_hash, email, role, avatar) 
+            VALUES (:name, :surename, :username, :pass, :email,  :role, :route);";
 
 
         try {

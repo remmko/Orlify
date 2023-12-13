@@ -39,14 +39,16 @@ function ctrlCheck($request, $response, $container){
 
   
    
-
+    
     $data = explode(',', $img);
+   
     $file = base64_decode($data[1]);
 
     $filename="avatar_".$username."."."png";
 
     try{
-        file_put_contents($_SERVER['DOCUMENT_ROOT'] ."/img/".$filename, $file);
+        file_put_contents($_SERVER['DOCUMENT_ROOT']."/img/".$filename, $file);
+      
 
     }catch(Exception $e){
         echo "Error to add photo";
@@ -70,7 +72,7 @@ function ctrlCheck($request, $response, $container){
   
 
         $register = $container -> get("users");
-        $register = $register -> register($username, $name, $surename, $email, $password, $grups, $getGroups);
+        $register = $register -> register($username, $name, $surename, $email, $password, $grups, $getGroups, $filename);
     
         if($register=="succsesful"){
             $response -> redirect("Location: login");

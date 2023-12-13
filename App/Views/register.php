@@ -15,6 +15,16 @@
 
 </head>
 
+<?php 
+
+    if(isset($_GET["username"])&& $_GET["username"]=="true"){
+        echo "<script>alert('El nom d\'usuari ja existeix')</script>";
+    }elseif (isset($_GET["email"])&& $_GET["email"]=="true") {
+        echo "<script>alert('El correu electrònic ja existeix')</script>";
+    };
+
+?>
+
 <body class="bg-gray-50 dark:bg-gray-900 mt-5">
 
     <section>
