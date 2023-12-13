@@ -103,8 +103,8 @@ class users
             }
         }
 
-        $sql = "INSERT INTO users (name, last_name, username, password_hash, email, role) 
-            VALUES (:name, :surename, :username, :pass, :email,  :role);";
+        $sql = "INSERT INTO users (name, last_name, username, password_hash, email, role, avatar) 
+            VALUES (:name, :surename, :username, :pass, :email,  :role, :route);";
 
 
         try {
@@ -139,7 +139,6 @@ class users
 
         return "succsesful";
     }
-
     public function toStudent($userID)
     {
         $sql = "UPDATE users SET role = 'student' WHERE id = :userID;";
