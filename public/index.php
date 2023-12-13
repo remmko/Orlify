@@ -33,6 +33,8 @@ include "../App/Controllers/sendMail.php";
 include "../App/Controllers/changePass.php";
 include "../App/Controllers/newPass.php";
 include "../App/Controllers/changeImage.php";
+include "../App/Controllers/randomUserGenerator.php";
+include "../App/Controllers/uploadRandomUser.php";
 
 include "../App/Controllers/personaldata.php";
 
@@ -56,6 +58,8 @@ $app->route("teacherpanelcontrols", "ctrlUCPControls");
 $app->route("changeUser", "ctrlTeacherPanelControls");
 $app->route("CSVpanel", "ctrlCSV");
 $app->route("upload", "ctrlUploadCSV");
+$app->route("rdmUser", "ctrlRdmUser");
+$app->route("uploadRdmUser", "uploadRdmUser");
 
 
 $app->execute();
