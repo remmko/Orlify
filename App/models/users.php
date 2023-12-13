@@ -139,7 +139,6 @@ class users
 
         return "succsesful";
     }
-
     public function toStudent($userID)
     {
         $sql = "UPDATE users SET role = 'student' WHERE id = :userID;";
