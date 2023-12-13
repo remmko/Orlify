@@ -29,10 +29,12 @@
         <form id="uploadForm" action="upload" method="post" enctype="multipart/form-data">
           <label for="file" class="block mt-4 mb-2">Escull un fitcher CSV</label>
 
-          <div id="dropArea" class="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-500 flex items-center justify-center rounded-xl mb-4">
+          <div id="dropArea"
+            class="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-500 flex items-center justify-center rounded-xl mb-4">
             <img src="/img/subir-archivo.svg" alt="Imatge de pujada d'elements" class="w-24 mb-4" draggable="false">
             <span id="dropText" class="">Seleccioneu un fitxer o arrossegueu-lo i deixeu-lo anar aquí</span>
-            <input type="file" aria-label="Entrada fitchers CSV" name="fitcher" id="fileInput" class="hidden" accept=".csv">
+            <input type="file" aria-label="Entrada fitchers CSV" name="fitcher" id="fileInput" class="hidden"
+              accept=".csv">
           </div>
 
           <div id="fileList" class="mt-4 text-gray-700"></div>
@@ -40,16 +42,24 @@
 
         <!-- Modal toggle -->
         <div class="flex space-x-4 mt-4">
-          <button data-modal-target="errorLogModal" data-modal-toggle="errorLogModal" id="errorModalButton" class="block text-white bg-custom hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-custom dark:focus:ring-blue-800" type="button">
+          <button data-modal-target="errorLogModal" data-modal-toggle="errorLogModal" id="errorModalButton"
+            class="block text-white bg-custom hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-custom dark:focus:ring-blue-800"
+            type="button">
             Resultats
           </button>
-          <button data-modal-target="explanationModal" data-modal-toggle="explanationModal" class="block text-white bg-custom hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-custom dark:focus:ring-blue-800" type="button">
+          <button data-modal-target="explanationModal" data-modal-toggle="explanationModal"
+            class="block text-white bg-custom hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-custom dark:focus:ring-blue-800"
+            type="button">
             Ajuda
           </button>
-          <button data-modal-target="exampleModal" data-modal-toggle="exampleModal" class="block text-white bg-custom hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-custom dark:focus:ring-blue-800" type="button">
+          <button data-modal-target="exampleModal" data-modal-toggle="exampleModal"
+            class="block text-white bg-custom hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-custom dark:focus:ring-blue-800"
+            type="button">
             Exemple CSV
           </button>
-          <button data-modal-target="aliasModal" data-modal-toggle="aliasModal" class="block text-white bg-custom hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-custom dark:focus:ring-blue-800" type="button">
+          <button data-modal-target="aliasModal" data-modal-toggle="aliasModal"
+            class="block text-white bg-custom hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-custom dark:focus:ring-blue-800"
+            type="button">
             Àlies de les classes
           </button>
         </div>
@@ -62,7 +72,6 @@
 
   <script src="/js/flowbite.min.js"></script>
   <script src="/js/bundle.js"></script>
-  <script src="/js/index.js"></script>
 
   <script>
     const dropArea = document.getElementById('dropArea');
@@ -157,9 +166,9 @@
 
       // Submit the form with the FormData object
       fetch('upload', {
-          method: 'POST',
-          body: formData
-        })
+        method: 'POST',
+        body: formData
+      })
         .then(response => response.text())
         .then(data => {
           // Display the response content within the modal
@@ -193,7 +202,6 @@
   </script>
   <script src="/js/flowbite.min.js"></script>
   <script src="/js/bundle.js"></script>
-  <script src="/js/index.js"></script>
 </body>
 
 </html>

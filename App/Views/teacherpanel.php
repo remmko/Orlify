@@ -30,13 +30,23 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($result as $user) : ?>
+                <?php foreach ($result as $user): ?>
                     <tr>
-                        <td><?= $user['username'] ?></td>
-                        <td><?= $user['name'] ?></td>
-                        <td><?= $user['last_name'] ?></td>
-                        <td><?= $user['email'] ?></td>
-                        <td><?= $user['grup_name'] ?></td>
+                        <td>
+                            <?= $user['username'] ?>
+                        </td>
+                        <td>
+                            <?= $user['name'] ?>
+                        </td>
+                        <td>
+                            <?= $user['last_name'] ?>
+                        </td>
+                        <td>
+                            <?= $user['email'] ?>
+                        </td>
+                        <td>
+                            <?= $user['grup_name'] ?>
+                        </td>
                         <td>
                             <select class="action-select" name="selectedData[]" style="border: 1px solid black">
                                 <option value=""></option>
@@ -51,7 +61,8 @@
             </tbody>
         </table>
 
-        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        <button type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             Guardar
         </button>
     </form>
@@ -59,7 +70,6 @@
 
     <script src="/js/flowbite.min.js"></script>
     <script src="/js/bundle.js"></script>
-    <script src="/js/index.js"></script>
 
     <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
