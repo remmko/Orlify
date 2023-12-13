@@ -55,7 +55,6 @@ $app->route("register", "ctrlRegister");
 $app->route("checkregister", "ctrlCheck");
 $app->route("personaldata", "ctrlPersonalData");
 $app->route("teacherpanel", "ctrlUCP");
-$app->route("teacherpanelcontrols", "ctrlUCPControls");
 $app->route("changeUser", "ctrlTeacherPanelControls");
 $app->route("CSVpanel", "ctrlCSV");
 $app->route("upload", "ctrlUploadCSV");
