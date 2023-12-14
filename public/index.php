@@ -37,12 +37,9 @@ include "../App/Controllers/updateInfoUser.php";
 include "../App/Controllers/error.php";
 include "../App/Controllers/managerPanel.php";
 include "../App/Controllers/newOrla.php";
-<<<<<<< HEAD
 include "../App/Controllers/test.php";
-=======
 include "../App/Controllers/randomUserGenerator.php";
 include "../App/Controllers/uploadRandomUser.php";
->>>>>>> 8617899230aa3f42e1251a92f4c8378cf7593f60
 
 
 
