@@ -234,7 +234,7 @@ class users
 
     public function isAliasCorrect($alias)
     {
-        $sql = "SELECT id FROM grups WHERE alias = :alias;";
+        $sql = "SELECT * FROM grups WHERE alias = :alias;";
 
         $stm = $this->sql->prepare($sql);
 
@@ -378,6 +378,14 @@ class users
         $sql = "SELECT * FROM orlas";
 
         $stm = $this->sql->prepare($sql);
+    }
+
+    public function getTestUsers()
+    {
+        $sql = "SELECT * from users u WHERE u.isTestUser=1;";
+
+        $stm = $this->sql->prepare($sql);
+
         $stm->execute();
         $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -391,5 +399,24 @@ class users
 
         $stm = $this->sql->prepare($sql);
         $stm->execute([":name" => $name, ":date" => $date]);
+    }
+    
+    public function uploadTestUsers($role, $name, $surname, $email, $username, $avatar)
+    {
+        $password = hash("sha256", "testing10");
+        $sql = "INSERT INTO users (name, last_name, username, password_hash, email, role, avatar, isTestUser) VALUES (:name, :last_name, :username, :pwd_hash, :email, :role, :avatar, 1);";
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([
+            ':name' => $name,
+            ':last_name' => $surname,
+            ':username' => $username,
+            ':pwd_hash' => $password,
+            ':email' => $email,
+            ':role' => $role,
+            ':avatar' => $avatar
+        ]);
+        $result = true;
+
+        return $result;
     }
 }
