@@ -16,8 +16,14 @@
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
 
     <title>Registre</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
+<style>
+    .bg-custom {
+        background-color: #1a4bd0;
+    }
+</style>
 
 <?php
 
@@ -25,8 +31,7 @@ if (isset($_GET["username"]) && $_GET["username"] == "true") {
     echo "<script>alert('El nom d\'usuari ja existeix')</script>";
 } elseif (isset($_GET["email"]) && $_GET["email"] == "true") {
     echo "<script>alert('El correu electrònic ja existeix')</script>";
-}
-;
+};
 
 ?>
 
@@ -38,81 +43,60 @@ if (isset($_GET["username"]) && $_GET["username"] == "true") {
     <!-- Main Section -->
     <section>
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
-            <div
-                class="w-full bg-white rounded-xl shadow-2xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="w-full bg-white rounded-xl shadow-2xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1
-                        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Crea el teu compte
                     </h1>
 
-                    <form class="space-y-4 md:space-y-6" method="POST" enctype="multipart/form-data"
-                        action="/checkregister">
+                    <form class="space-y-4 md:space-y-6" method="POST" enctype="multipart/form-data" action="/checkregister">
                         <div>
                             <label for="name" class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
                                 Nom
                             </label>
-                            <input type="text" name="name" id="name"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Pere" required>
+                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pere" required>
                         </div>
 
                         <div>
                             <label for="surname" class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
                                 Cognom
                             </label>
-                            <input type="text" name="surname" id="surname"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Ferrer" required>
+                            <input type="text" name="surname" id="surname" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ferrer" required>
                         </div>
 
                         <div>
-                            <label for="username"
-                                class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
+                            <label for="username" class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
                                 Nom d'usuari
                             </label>
-                            <input type="text" name="username" id="username"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="pere78" required>
+                            <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="pere78" required>
                         </div>
 
                         <div>
                             <label for="email" class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
                                 Correu electrònic
                             </label>
-                            <input type="email" name="email" id="email"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="name@company.com" required>
+                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required>
                         </div>
 
                         <div>
-                            <label for="password"
-                                class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
+                            <label for="password" class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
                                 Contrasenya
                             </label>
-                            <input type="password" name="password" id="password" placeholder="••••••••"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                required>
+                            <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                         </div>
 
                         <div>
-                            <label for="confirm-password"
-                                class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
+                            <label for="confirm-password" class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
                                 Confirmar contrasenya
                             </label>
-                            <input type="password" name="confirm-password" id="confirm-password" placeholder="••••••••"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                required>
+                            <input type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                         </div>
 
                         <div>
-                            <label for="username"
-                                class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
+                            <label for="username" class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
                                 Avatar
                             </label>
-                            <button data-modal-target="default-modal" data-modal-toggle="default-modal"
-                                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                type="button">
+                            <button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                                 Puja el teu avatar
                             </button>
 
@@ -122,6 +106,7 @@ if (isset($_GET["username"]) && $_GET["username"] == "true") {
                         <div id="groupselect">
                             <script>
                                 getGroups();
+
                                 function getGroups() {
                                     var groupselect = document.getElementById("groupselect");
                                     groupselect.innerHTML = "";
@@ -144,13 +129,10 @@ if (isset($_GET["username"]) && $_GET["username"] == "true") {
                                         formCheck.appendChild(label);
                                     }
                                 }
-
-
                             </script>
                         </div>
 
-                        <button type="check" id="check"
-                            class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 cursor-pointer">
+                        <button type="check" id="check" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 cursor-pointer">
                             Registra't
                         </button>
 
@@ -167,25 +149,18 @@ if (isset($_GET["username"]) && $_GET["username"] == "true") {
 
 
                         <!-- Avatar modal -->
-                        <div id="default-modal" tabindex="-1" aria-hidden="true"
-                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div class="relative p-4 w-full max-w-2xl max-h-full">
                                 <!-- Modal content -->
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                     <!-- Modal header -->
-                                    <div
-                                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                             Seleccionar avatar
                                         </h3>
-                                        <button type="button"
-                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                            data-modal-hide="default-modal">
-                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 14 14">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                             </svg>
                                         </button>
                                     </div>
@@ -193,16 +168,19 @@ if (isset($_GET["username"]) && $_GET["username"] == "true") {
                                     <!-- Modal body -->
                                     <div class="p-4 md:p-5 space-y-4">
                                         <div>
-                                            <label for="upload"
-                                                class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
-                                                Pujar foto
-                                            </label>
-                                            <input type="file" name="file" id="foto">
+                                            <label for="file" class="block mt-4 mb-2">Escull una imatge</label>
+
+                                            <div id="dropArea1" class="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-500 flex items-center justify-center rounded-xl mb-4">
+                                                <img src="/img/subir-archivo.svg" alt="Imatge de pujada d'elements" class="w-24 mb-4" draggable="false">
+                                                <span id="dropText1" class="">Seleccioneu una imatge o arrossegueu-la i deixeu-la anar aquí</span>
+                                                <input type="file" aria-label="Entrada de imatges" name="file" id="foto" class="hidden" accept="image/">
+                                            </div>
+
+                                            <div id="fileNameDisplay" class="mt-2 text-gray-700"></div>
 
                                             <br>
 
-                                            <button data-modal-target="image-modal" data-modal-toggle="image-modal"
-                                                class=" text-blue-700" type="button">
+                                            <button data-modal-target="image-modal" data-modal-toggle="image-modal" class=" text-blue-700" type="button">
                                                 Or Take a foto
                                             </button>
 
@@ -215,25 +193,18 @@ if (isset($_GET["username"]) && $_GET["username"] == "true") {
 
 
                         <!-- Image Modal -->
-                        <div id="image-modal" tabindex="-1" aria-hidden="true"
-                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div id="9" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div class="relative p-4 w-full max-w-2xl max-h-full">
                                 <!-- Modal content -->
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                     <!-- Modal header -->
-                                    <div
-                                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                             Seleccionar avatar
                                         </h3>
-                                        <button type="button"
-                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                            data-modal-hide="image-modal">
-                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 14 14">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="image-modal">
+                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                             </svg>
                                         </button>
                                     </div>
@@ -241,8 +212,7 @@ if (isset($_GET["username"]) && $_GET["username"] == "true") {
                                     <!-- Modal body -->
                                     <div class="p-4 md:p-5 space-y-4">
                                         <div>
-                                            <label for="upload"
-                                                class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
+                                            <label for="upload" class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">
                                                 Foto instantània
                                             </label>
 
@@ -261,8 +231,7 @@ if (isset($_GET["username"]) && $_GET["username"] == "true") {
                                                     <canvas id="canvas"></canvas>
 
                                                     <div class="output">
-                                                        <img id="photo"
-                                                            alt="The screen capture will appear in this box.">
+                                                        <img id="photo" alt="The screen capture will appear in this box.">
                                                     </div>
                                                 </div>
 
@@ -289,6 +258,63 @@ if (isset($_GET["username"]) && $_GET["username"] == "true") {
 
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        const dropArea = document.getElementById('dropArea1');
+        const dropText = document.getElementById('dropText1');
+        const fileInput = document.getElementById('foto');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+
+        dropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropArea.classList.add('border', 'border-solid', 'bg-custom', 'text-white');
+            dropArea.classList.remove('border-dashed');
+            dropText.textContent = 'Drop';
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.classList.remove('bg-custom', 'text-white');
+            dropArea.classList.add('border-dashed');
+            dropText.textContent = 'Seleccioneu una imatge o arrossegueu-la i deixeu-la anar aquí';
+        });
+
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropArea.classList.remove('bg-custom', 'text-white');
+            dropArea.classList.add('border-dashed');
+            dropText.textContent = 'Seleccioneu una imatge o arrossegueu-la i deixeu-la anar aquí';
+
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', () => {
+            const files = fileInput.files;
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            for (const file of files) {
+                if (file.type.startsWith('image/')) {
+                    // Display the file name in a separate element
+                    fileNameDisplay.textContent = `Selected File: ${file.name}`;
+                    fileInput.files = files;
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Fitcher no valid',
+                        text: 'Si us plau, selecciona una imatge',
+                    });
+                }
+            }
+        }
+
+        dropArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+    </script>
+
+
+
 
 </body>
 
