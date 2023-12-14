@@ -12,12 +12,19 @@
             $users = [];
             for ($i=0; $i < count($groups); $i++) { 
                 $studentInfo = $getGroups -> getGroupStudentInfo($groups[$i]["id"]);
-                $users[$groups[$i]["id"]] = $studentInfo;
+                $users[$i] = $studentInfo;
 
             }
 
+
+            if($request->has(INPUT_GET, "id")){
+                $id = $request->get(INPUT_GET, "id");
+                $response -> set("users", $users[$id]);
+                $response -> set("id", $id);
+                
+            }
+
             $response -> set("groups", $groups);
-            $response -> set("users", $users);
             $response -> setTemplate("teacherpanel.php");
             $response -> set("result",$result);
             return $response;

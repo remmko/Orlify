@@ -37,7 +37,7 @@ namespace App\models;
 
 
         public function getGroupStudentInfo($grupID){
-            $sql = "SELECT * from users JOIN user_grups u WHERE u.grup_id = :grupID and id = u.user_id;";
+            $sql = "SELECT * from users JOIN user_grups u WHERE u.grup_id = :grupID and id = u.user_id and u.aproved = 1;";
             $stm = $this->sql->prepare($sql);
             $stm->execute([
                 ":grupID" => $grupID

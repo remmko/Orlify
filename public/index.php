@@ -37,6 +37,7 @@ include "../App/Controllers/updateInfoUser.php";
 include "../App/Controllers/error.php";
 include "../App/Controllers/managerPanel.php";
 include "../App/Controllers/newOrla.php";
+include "../App/Controllers/test.php";
 
 
 
@@ -68,6 +69,5 @@ $app->route("error", "ctrlError");
 $app->route("personaldata", "ctrlPersonalData");
 $app->route("managerpanel", "ctrlManagerPanel");
 $app->route("neworla", "ctrlNewOrla");
-
 
 $app->execute();

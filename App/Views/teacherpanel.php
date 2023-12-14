@@ -10,7 +10,7 @@
 
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="main.css">
 
 </head>
 
@@ -18,13 +18,13 @@
 
 <body>
 
-    <div id="left_menu">
-        <li class="list-none">
-            <ul onclick="showTable()">Alumnes no asignats</ul>
+    <div id="left_menu" class="inline">
+        <li class="list-none overflow-auto">
+            <ul id="select" onclick="showTable()">Alumnes no asignats</ul>
             <script>
                 var groups = <?php echo json_encode($groups); ?>;
                 for (var i = 0; i < groups.length; i++) {
-                    document.write("<ul onclick = 'showStudents("+i+")'>" + groups[i].grup_name + "</ul>");
+                    document.write("<ul id='select"+i+"' onclick = 'showStudents("+i+")'>" + groups[i].grup_name + "</ul>");
                 }
             </script>
         </li>
@@ -71,6 +71,7 @@
 
 
 
+
     <form id="grupForm" method="POST" style="display: none" action="changeUser" class="mx-auto max-w-screen-lg mt-8">
         <table id="userTable">
             <thead>
@@ -79,21 +80,17 @@
                     <th>Nom</th>
                     <th>Cognoms</th>
                     <th>E-Mail</th>
+                    <th>Avatar</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($users as $users) : ?>
                     <tr>
-                        <script>
-                            var users = <?php echo json_encode($users); ?>;
-                            var groupID = document.getElementById("groupID").textContent;
-                            for (var i = 0; i < users.length; i++) {
-                                document.write("<td>" + users[groupID].username + "</td>");
-                                document.write("<td>" + users[groupID].name + "</td>");
-                                document.write("<td>" + users[groupID].last_name + "</td>");
-                                document.write("<td>" + users[groupID].email + "</td>");
-                            }
-                        </script>
+                        <td><?= $users['username'] ?></td>
+                        <td><?= $users['name'] ?></td>
+                        <td><?= $users['last_name'] ?></td>
+                        <td><?= $users['email'] ?></td>
+                        <td><img style="width: 50px; height: 50px" src="<?= $users['avatar'] ?>" alt=""></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -115,24 +112,53 @@
         // Initialize DataTable
         var table = document.getElementById("userForm");
         var table2 = document.getElementById("grupForm");
-        var groupID;
 
         function showTable() {
+           window.location = "teacherpanel";
+        }
+        function showTable2() {
+            var select = document.getElementById("select");
+            select.style.backgroundColor = "blue";
             table.style.display = "block";
             table2.style.display = "none";
             $('#userDataTable').DataTable();
         }
 
         function showStudents(groupID){
-            var group = document.getElementById("groupID");
-            group.textContent = groupID;
+            window.location = "teacherpanel?id=" + groupID;
+
+        }
+
+        function showStudentTable(){
+            var select = document.getElementById("<?php if($id==null){
+                echo "null";
+            }else{
+                echo "select".$id;
+            } ?>");
+            select.style.backgroundColor = "blue";
             table2.style.display = "block";
             table.style.display = "none";
             $('#userTable').DataTable();
-
         }
+
+        
+        
        
     </script>
+
+    <?php if(isset($_GET["id"])){
+        ?><script>
+        showStudentTable();
+        </script>
+    <?php
+    }else{
+        ?><script>
+        showTable2();
+        </script>
+    <?php
+    } ?>
+        
+          
 </body>
 
 </html>
