@@ -18,19 +18,19 @@
 
 <body>
 
-    <div id="left_menu" class="inline">
-        <li class="list-none overflow-auto">
-            <ul id="select" onclick="showTable()">Alumnes no asignats</ul>
+    <div id="left_menu" class="overflow-auto w-full my-10 flex justify-center">
+        <ul class="list-none">
+            <li id="select" class="inline-block rounded mx-10 bg-green-500 border-none text-white py-4 px-8 text-center no-underline inline-block text-base" onclick="showTable()">Alumnes no asignats</li>
             <script>
                 var groups = <?php echo json_encode($groups); ?>;
                 for (var i = 0; i < groups.length; i++) {
-                    document.write("<ul id='select"+i+"' onclick = 'showStudents("+i+")'>" + groups[i].grup_name + "</ul>");
+                    document.write("<li id='select"+i+"' class='inline-block rounded mx-10 bg-green-500 border-none text-white py-4 px-8 text-center no-underline inline-block text-base' onclick = 'showStudents("+i+")'>" + groups[i].grup_name + "</li>");
                 }
             </script>
-        </li>
+        </ul>
     </div>
 
-    <form id="userForm" method="POST" style="display: none" action="changeUser" class="mx-auto max-w-screen-lg mt-8">
+    <form id="userForm" method="POST" style="display: none" action="changeUser" class="mx-auto  max-w-screen-lg mt-8">
         <table id="userDataTable">
             <thead>
                 <tr>

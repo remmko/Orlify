@@ -1,4 +1,4 @@
-<header class="bg-gray-100 h-20 flex items-center justify-between px-4">
+<header class="bg-gray-100 h-20 flex items-center justify-between w-full px-4">
 
     <!-- Logo a l'esquerra -->
     <a href="/" class="w-24 ml-20">
