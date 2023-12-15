@@ -69,7 +69,6 @@ function ctrlCheck($request, $response, $container)
         $grups[$i] = $request->get(INPUT_POST, "group" . $i);
     }
 
-<<<<<<< HEAD
   
     
   
@@ -86,21 +85,3 @@ function ctrlCheck($request, $response, $container)
         }
         return $response;
     }
-=======
-
-
-
-
-    $register = $container->get("users");
-    $register = $register->register($username, $name, $surename, $email, $password, $grups, $getGroups, $filename);
-
-    if ($register == "succsesful") {
-        $response->redirect("Location: login");
-    } elseif ($register == "emailExists") {
-        $response->redirect("Location: register?email=true");
-    } elseif ($register == "usernameExists") {
-        $response->redirect("Location: register?username=true");
-    }
-    return $response;
-}
->>>>>>> 8617899230aa3f42e1251a92f4c8378cf7593f60
