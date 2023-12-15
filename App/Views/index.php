@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="img/icons/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="img/icons/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-icon-180x180.png">
-  
+
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="img/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -42,6 +42,31 @@
     <title>Orlify</title>
 
 </head>
+
+<style>
+    .container {
+        text-align: center;
+    }
+
+    .professors,
+    .alumnes {
+        margin: 20px 0;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        grid-gap: 20px;
+        justify-items: center;
+        align-items: center;
+    }
+
+    /* Exemple d'estil per a les imatges dels alumnes */
+    .alumnes img {
+        max-width: 100px;
+        border-radius: 50%;
+    }
+</style>
 
 <body class="overflow-hidden">
 
@@ -56,12 +81,8 @@
                 <ul>
                     <li>Classes Publiques</li>
 
-                    <ul class="text-base">
-                        <?php foreach ($orles as $value) { ?>
-                            <li class="cursor-pointer mt-4">
-                                <?= $value['orla_name'] ?>
-                            </li>
-                        <?php } ?>
+                    <ul id="classes-list" class="text-base">
+                        <!-- Aquí es carregaran dinàmicament les classes -->
                     </ul>
                 </ul>
             </div>
@@ -71,7 +92,18 @@
 
         <!-- Central -->
         <div class="central">
+            <div class="container">
+                <div class="professors">
+                    <h2>Professors</h2>
 
+                </div>
+                <div class="alumnes">
+                    <h2>Alumnes</h2>
+                    <div class="grid">
+                        <!-- Aquí es generarà dinàmicament la llista d'alumnes -->
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Right Buttons -->
@@ -93,40 +125,99 @@
 
             </form>
 
-            <div class="edit">
-                <button>Editar</button>
-            </div>
-
-            <div class="template">
-                <button>Canviar plantilla</button>
-            </div>
-
             <div class="download">
                 <button>Descarregar</button>
             </div>
-            
 
-            <script>
-                if ('serviceWorker' in navigator) {
-                    window.addEventListener('load', function() {
-                        navigator.serviceWorker.register('js/service-worker.js').then(function(registration) {
-                            // Registration was successful
-                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                        }, function(err) {
-                            // registration failed :(
-                            console.log('ServiceWorker registration failed: ', err);
-                        }).catch(function(err) {
-                            console.log(err)
-                        });
-                    });
-                } else {
-                    console.log('service worker is not supported');
-                }
-
-            </script>
         </div>
     </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            function carregarClasses() {
+                const entries = {};
+
+                $.ajax({
+                    url: "/orles",
+                    method: "GET",
+                    data: entries,
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+
+                        if (Array.isArray(data.orles)) {
+                            const classesList = $("#classes-list");
+                            classesList.empty();
+
+                            data.orles.forEach(orla => {
+                                const orlaElement = $(`
+                                    <li class="mt-5">
+                                        <a href="/${orla.id}">
+                                            ${orla.grup_name}
+                                        </a>
+                                    </li>
+                                `);
+                                classesList.append(orlaElement);
+                            });
+
+                        } else {
+                            console.error("Format de dades no vàlid");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+
+
+            function carregarAlumnes(orlaId) {
+                const alumnesContainer = $(".alumnes .grid");
+
+                $.ajax({
+                    url: `/orles?id=${orlaId}`,
+                    method: "GET",
+                    dataType: 'json',
+
+                    success: function (data) {
+                        console.log(data);
+                        if (Array.isArray(data.alumnes)) {
+                            alumnesContainer.empty();
+
+                            data.alumnes.forEach(alumne => {
+                                const alumneElement = $(`
+                            <div>
+                                <img src="${alumne.avatar}" alt="${alumne.name}">
+                            </div>
+                        `);
+                                alumnesContainer.append(alumneElement);
+                            });
+
+                        } else {
+                            console.error("Format de dades d'alumnes no vàlid");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+
+            carregarClasses();
+
+            $("#classes-list").on("click", "a", function (event) {
+                event.preventDefault();
+                const orlaId = $(this).attr("href").split('/').pop();
+                carregarAlumnes(orlaId);
+            });
+        });
+
+
+    </script>
 
 
     <script src="/js/flowbite.min.js"></script>
