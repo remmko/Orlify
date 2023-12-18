@@ -37,9 +37,9 @@ include "../App/Controllers/updateInfoUser.php";
 include "../App/Controllers/error.php";
 include "../App/Controllers/managerPanel.php";
 include "../App/Controllers/newOrla.php";
-include "../App/Controllers/test.php";
 include "../App/Controllers/randomUserGenerator.php";
 include "../App/Controllers/uploadRandomUser.php";
+include "../App/Controllers/orles.php";
 
 
 
@@ -73,5 +73,7 @@ $app->route("managerpanel", "ctrlManagerPanel");
 $app->route("neworla", "ctrlNewOrla");
 $app->route("rdmUser", "ctrlRdmUser");
 $app->route("uploadRdmUser", "uploadRdmUser");
+$app->route("orles", "ctrlOrles");
+
 
 $app->execute();

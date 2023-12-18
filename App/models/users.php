@@ -375,7 +375,7 @@ class users
 
     public function getOrles()
     {
-        $sql = "SELECT * FROM orlas";
+        $sql = "SELECT * FROM grups";
 
         $stm = $this->sql->prepare($sql);
     }
@@ -393,12 +393,34 @@ class users
     }
 
 
-    public function createNewOrla($name, $date)
+    public function getTeachers($id)
     {
-        $sql = "INSERT INTO orlas (orla_name, creation_date) VALUES (:name, :date)";
+        $sql = "SELECT u.* FROM users u where u.id IN (SELECT g.grup_teacher FROM grups g WHERE g.id = :id);";
 
         $stm = $this->sql->prepare($sql);
-        $stm->execute([":name" => $name, ":date" => $date]);
+        $stm->execute([":id" => $id]);
+        $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    public function getAlumnes($id)
+    {
+        $sql = "SELECT u.* FROM users u WHERE u.id IN (SELECT ug.user_id FROM user_grups ug WHERE ug.grup_id = :id AND ug.aproved = 1);";
+
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([":id" => $id]);
+        $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    public function createNewOrla($name, $date, $alias)
+    {
+        $sql = "INSERT INTO grups (grup_name, creation_year, alias) VALUES (:name, :date, :alias)";
+
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([":name" => $name, ":date" => $date, ":alias" => $alias]);
     }
     
     public function uploadTestUsers($role, $name, $surname, $email, $username, $avatar)

@@ -1,13 +1,5 @@
 import $ from 'jquery';
 
-import hola from './hola.js';
-
-import { Example, obj } from './example.ts';
-
-$(function () {
-    hola();
-});
-
 $(document).ready(function () {
     const regex =
         /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/])[a-zA-Z0-9-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/]{6,13}$/;

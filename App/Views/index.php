@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="img/icons/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="img/icons/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-icon-180x180.png">
-  
+
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="img/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -42,6 +42,57 @@
     <title>Orlify</title>
 
 </head>
+
+<style>
+    .container {
+        text-align: center;
+    }
+
+    img {
+        border-radius: 15px;
+        max-width: 100px;
+        max-height: 100px;
+        width: auto;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .grid-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .grid-item {
+        text-align: center;
+        width: 100px;
+    }
+
+    .image-container {
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .grid-item p {
+        font-size: 10px;
+        margin: 0;
+        margin-top: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+    }
+</style>
 
 <body class="overflow-hidden">
 
@@ -56,12 +107,8 @@
                 <ul>
                     <li>Classes Publiques</li>
 
-                    <ul class="text-base">
-                        <?php foreach ($orles as $value) { ?>
-                            <li class="cursor-pointer mt-4">
-                                <?= $value['orla_name'] ?>
-                            </li>
-                        <?php } ?>
+                    <ul id="classes-list" class="text-base">
+                        <!-- Aquí es carregaran dinàmicament les classes -->
                     </ul>
                 </ul>
             </div>
@@ -71,7 +118,22 @@
 
         <!-- Central -->
         <div class="central">
+            <div class="container">
+                <div class="year-promotion" id="year-promotion">
+                    <!-- Aquí es carregarà dinàmicament l'any promoció -->
+                </div>
+                <div class="teachers">
+                    <div class="grid2 p-5" id="teachers-grid">
+                        <!-- Aquí es generarà dinàmicament la llista de professors -->
+                    </div>
+                </div>
 
+                <div class="alumnes p-5">
+                    <div class="grid" id="alumnes-grid">
+                        <!-- Aquí es generarà dinàmicament la llista d'alumnes -->
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Right Buttons -->
@@ -93,40 +155,193 @@
 
             </form>
 
-            <div class="edit">
-                <button>Editar</button>
-            </div>
-
-            <div class="template">
-                <button>Canviar plantilla</button>
-            </div>
-
             <div class="download">
                 <button>Descarregar</button>
             </div>
-            
 
-            <script>
-                if ('serviceWorker' in navigator) {
-                    window.addEventListener('load', function() {
-                        navigator.serviceWorker.register('js/service-worker.js').then(function(registration) {
-                            // Registration was successful
-                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                        }, function(err) {
-                            // registration failed :(
-                            console.log('ServiceWorker registration failed: ', err);
-                        }).catch(function(err) {
-                            console.log(err)
-                        });
-                    });
-                } else {
-                    console.log('service worker is not supported');
-                }
-
-            </script>
         </div>
     </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            function carregarClasses() {
+                const entries = {};
+
+                $.ajax({
+                    url: "/orles",
+                    method: "GET",
+                    data: entries,
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+
+                        if (Array.isArray(data.orles)) {
+                            const classesList = $("#classes-list");
+                            classesList.empty();
+
+                            data.orles.forEach(orla => {
+                                const orlaElement = $(`
+                                    <li class="mt-5">
+                                        <a href="/${orla.id}">
+                                            ${orla.grup_name}
+                                        </a>
+                                    </li>
+                                `);
+                                classesList.append(orlaElement);
+                            });
+
+                        } else {
+                            console.error("Format de dades no vàlid");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+            function carregarYearPromotion(orlaId) {
+                const yearPromotionContainer = $("#year-promotion");
+
+                $.ajax({
+                    url: `/orles?id=${orlaId}`,
+                    method: "GET",
+                    dataType: 'json',
+
+                    success: function (data) {
+                        console.log(data);
+                        if (Array.isArray(data.orles) && data.orles.length > 0) {
+                            const orlaSeleccionada = data.orles.find(orla => orla.id === parseInt(orlaId));
+
+                            if (orlaSeleccionada && orlaSeleccionada.creation_year) {
+                                const yearPromotion = orlaSeleccionada.creation_year;
+
+                                const yearPromotionElement = $(`
+                        <h1 class="text-3xl font-bold text-center mt-5">Promoció del ${yearPromotion}</h1>
+                    `);
+
+                                yearPromotionContainer.empty().append(yearPromotionElement);
+                            } else {
+                                console.error("No s'ha trobat l'any de la promoció");
+                            }
+                        } else {
+                            console.error("Format de dades de la orla no vàlid o orla no trobada");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+
+
+            function carregarAlumnes(orlaId) {
+                const alumnesContainer = $(".alumnes .grid");
+
+                $.ajax({
+                    url: `/orles?id=${orlaId}`,
+                    method: "GET",
+                    dataType: 'json',
+
+                    success: function (data) {
+                        if (Array.isArray(data.alumnes)) {
+                            const alumnesOrdenats = data.alumnes.sort((a, b) => (a.last_name > b.last_name) ? 1 : -1);
+                            alumnesContainer.empty();
+
+                            let count = 0;
+                            let currentRow;
+
+                            alumnesOrdenats.forEach((alumne, index) => {
+                                if (count % 7 === 0) {
+                                    currentRow = $("<div class='grid-row'></div>");
+                                    alumnesContainer.append(currentRow);
+                                }
+
+                                const alumneElement = $(`
+                                    <div class="grid-item">
+                                        <div class="image-container">
+                                            <img src="${alumne.avatar}" alt="${alumne.name}">
+                                        </div>
+                                        <p>${alumne.last_name}, <strong>${alumne.name}</strong></p>
+                                    </div>
+                                `);
+
+                                currentRow.append(alumneElement);
+                                count++;
+                            });
+
+                        } else {
+                            console.error("Format de dades d'alumnes no vàlid");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+
+            function carregarTeachers(orlaId) {
+                const teachersContainer = $("#teachers-grid");
+
+                $.ajax({
+                    url: `/orles?id=${orlaId}`,
+                    method: "GET",
+                    dataType: 'json',
+
+                    success: function (data) {
+                        if (Array.isArray(data.teachers)) {
+                            const teachersOrdenats = data.teachers.sort((a, b) => (a.last_name > b.last_name) ? 1 : -1);
+                            teachersContainer.empty();
+
+                            let count = 0;
+                            let currentRow;
+
+                            teachersOrdenats.forEach((teacher, index) => {
+                                if (count % 6 === 0) { // Canvia el nombre 5 per 6 per mostrar 6 imatges per fila
+                                    currentRow = $("<div class='grid-row'></div>");
+                                    teachersContainer.append(currentRow);
+                                }
+
+                                const teacherElement = $(`
+                                    <div class="grid-item">
+                                        <div class="image-container">
+                                            <img src="${teacher.avatar}" alt="${teacher.name}">
+                                        </div>
+                                        <p>${teacher.last_name}, <strong>${teacher.name}</strong></p>
+                                    </div>
+                                `);
+
+                                currentRow.append(teacherElement);
+                                count++;
+                            });
+
+                        } else {
+                            console.error("Format de dades de professors no vàlid");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+
+
+            carregarClasses();
+
+            $("#classes-list").on("click", "a", function (event) {
+                event.preventDefault();
+                const orlaId = $(this).attr("href").split('/').pop();
+                carregarYearPromotion(orlaId);
+                carregarAlumnes(orlaId);
+                carregarTeachers(orlaId);
+            });
+        });
+
+
+    </script>
 
 
     <script src="/js/flowbite.min.js"></script>
