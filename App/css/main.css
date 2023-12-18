@@ -143,7 +143,34 @@ header {
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
+    body.overflow-hidden {
+        overflow: auto !important;
+    }
+
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .central {
+        order: 1;
+    }
+
+    .sidebar,
+    .right-buttons {
+        width: 100%;
+        margin-top: 20px;
+        height: auto;
+        order: 2;
+    }
+
+    .edit button {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 915px) {
     .container {
         padding: 0 10px;
     }
