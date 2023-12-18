@@ -38,8 +38,8 @@
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 <div class="info">
-                                    <input type="text" name="name" class="border border-black rounded-sm"
-                                        placeholder="Classe 2n ESO C">
+                                    <input type="text" name="name" class="border border-grey rounded-sm"
+                                        placeholder="2n ESO C">
                                 </div>
                             </dd>
                         </div>
@@ -49,18 +49,19 @@
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 <div class="info">
-                                    <input type="text" name="aka" class="border border-black rounded-sm"
+                                    <input type="text" name="aka" class="border border-grey rounded-sm"
                                         placeholder="cl2ESOC">
                                 </div>
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
-                                Data de creació
+                                Any de promocio
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 <div class="info">
-                                    <input type="date" name="date" class="border border-black rounded-sm">
+                                    <input type="text" name="date" class="border border-grey rounded-sm"
+                                        placeholder="2013">
                                 </div>
                             </dd>
                         </div>

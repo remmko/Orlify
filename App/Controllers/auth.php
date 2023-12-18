@@ -2,9 +2,6 @@
 
 function ctrlAuth($request, $response, $container)
 {
-
-
-
     $username = $request->get(INPUT_POST, "username");
     $password = $request->get(INPUT_POST, "password");
 

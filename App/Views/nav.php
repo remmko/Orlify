@@ -18,13 +18,13 @@
                             <?php
                             if (isset($_SESSION["auth"]) && $_SESSION["auth"] == "true") {
                                 if ($_SESSION["img"] == "") {
-                                    echo "img/unknown.png";
+                                    echo "img/user-solid.svg";
 
                                 } else {
                                     echo $_SESSION["img"];
                                 }
                             } else {
-                                echo "img/unknown.png";
+                                echo "img/user-solid.svg";
                             } ?>
                             " alt="user photo">
                 </button>

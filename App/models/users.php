@@ -378,20 +378,12 @@ class users
     }
 
 
-    public function getProfessors()
+    public function getTeachers($id)
     {
-        $sql = "SELECT 
-            u.id, u.grup_teacher,
-            g.name, g.last_name, g.avatar, g.role
-        FROM 
-            grups u,
-            users g
-        WHERE 
-            g.role = 'teacher'
-        ";
+        $sql = "SELECT u.* FROM users u where u.id IN (SELECT g.grup_teacher FROM grups g WHERE g.id = :id);";
 
         $stm = $this->sql->prepare($sql);
-        $stm->execute();
+        $stm->execute([":id" => $id]);
         $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }

@@ -48,23 +48,49 @@
         text-align: center;
     }
 
-    .professors,
-    .alumnes {
-        margin: 20px 0;
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        grid-gap: 20px;
-        justify-items: center;
-        align-items: center;
-    }
-
-    /* Exemple d'estil per a les imatges dels alumnes */
-    .alumnes img {
+    img {
+        border-radius: 15px;
         max-width: 100px;
+        max-height: 100px;
+        width: auto;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .grid-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .grid-item {
+        text-align: center;
+        width: 100px;
+    }
+
+    .image-container {
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
         border-radius: 50%;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .grid-item p {
+        font-size: 10px;
+        margin: 0;
+        margin-top: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
     }
 </style>
 
@@ -93,13 +119,17 @@
         <!-- Central -->
         <div class="central">
             <div class="container">
-                <div class="professors">
-                    <h2>Professors</h2>
-
+                <div class="year-promotion" id="year-promotion">
+                    <!-- Aquí es carregarà dinàmicament l'any promoció -->
                 </div>
-                <div class="alumnes">
-                    <h2>Alumnes</h2>
-                    <div class="grid">
+                <div class="teachers">
+                    <div class="grid2 p-5" id="teachers-grid">
+                        <!-- Aquí es generarà dinàmicament la llista de professors -->
+                    </div>
+                </div>
+
+                <div class="alumnes p-5">
+                    <div class="grid" id="alumnes-grid">
                         <!-- Aquí es generarà dinàmicament la llista d'alumnes -->
                     </div>
                 </div>
@@ -173,6 +203,39 @@
                     }
                 });
             }
+            function carregarYearPromotion(orlaId) {
+                const yearPromotionContainer = $("#year-promotion");
+
+                $.ajax({
+                    url: `/orles?id=${orlaId}`,
+                    method: "GET",
+                    dataType: 'json',
+
+                    success: function (data) {
+                        console.log(data);
+                        if (Array.isArray(data.orles) && data.orles.length > 0) {
+                            const orlaSeleccionada = data.orles.find(orla => orla.id === parseInt(orlaId));
+
+                            if (orlaSeleccionada && orlaSeleccionada.creation_year) {
+                                const yearPromotion = orlaSeleccionada.creation_year;
+
+                                const yearPromotionElement = $(`
+                        <h1 class="text-3xl font-bold text-center mt-5">Promoció del ${yearPromotion}</h1>
+                    `);
+
+                                yearPromotionContainer.empty().append(yearPromotionElement);
+                            } else {
+                                console.error("No s'ha trobat l'any de la promoció");
+                            }
+                        } else {
+                            console.error("Format de dades de la orla no vàlid o orla no trobada");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
 
 
             function carregarAlumnes(orlaId) {
@@ -184,17 +247,30 @@
                     dataType: 'json',
 
                     success: function (data) {
-                        console.log(data);
                         if (Array.isArray(data.alumnes)) {
+                            const alumnesOrdenats = data.alumnes.sort((a, b) => (a.last_name > b.last_name) ? 1 : -1);
                             alumnesContainer.empty();
 
-                            data.alumnes.forEach(alumne => {
+                            let count = 0;
+                            let currentRow;
+
+                            alumnesOrdenats.forEach((alumne, index) => {
+                                if (count % 7 === 0) {
+                                    currentRow = $("<div class='grid-row'></div>");
+                                    alumnesContainer.append(currentRow);
+                                }
+
                                 const alumneElement = $(`
-                            <div>
-                                <img src="${alumne.avatar}" alt="${alumne.name}">
-                            </div>
-                        `);
-                                alumnesContainer.append(alumneElement);
+                                    <div class="grid-item">
+                                        <div class="image-container">
+                                            <img src="${alumne.avatar}" alt="${alumne.name}">
+                                        </div>
+                                        <p>${alumne.last_name}, <strong>${alumne.name}</strong></p>
+                                    </div>
+                                `);
+
+                                currentRow.append(alumneElement);
+                                count++;
                             });
 
                         } else {
@@ -207,12 +283,60 @@
                 });
             }
 
+            function carregarTeachers(orlaId) {
+                const teachersContainer = $("#teachers-grid");
+
+                $.ajax({
+                    url: `/orles?id=${orlaId}`,
+                    method: "GET",
+                    dataType: 'json',
+
+                    success: function (data) {
+                        if (Array.isArray(data.teachers)) {
+                            const teachersOrdenats = data.teachers.sort((a, b) => (a.last_name > b.last_name) ? 1 : -1);
+                            teachersContainer.empty();
+
+                            let count = 0;
+                            let currentRow;
+
+                            teachersOrdenats.forEach((teacher, index) => {
+                                if (count % 6 === 0) { // Canvia el nombre 5 per 6 per mostrar 6 imatges per fila
+                                    currentRow = $("<div class='grid-row'></div>");
+                                    teachersContainer.append(currentRow);
+                                }
+
+                                const teacherElement = $(`
+                                    <div class="grid-item">
+                                        <div class="image-container">
+                                            <img src="${teacher.avatar}" alt="${teacher.name}">
+                                        </div>
+                                        <p>${teacher.last_name}, <strong>${teacher.name}</strong></p>
+                                    </div>
+                                `);
+
+                                currentRow.append(teacherElement);
+                                count++;
+                            });
+
+                        } else {
+                            console.error("Format de dades de professors no vàlid");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+
+
             carregarClasses();
 
             $("#classes-list").on("click", "a", function (event) {
                 event.preventDefault();
                 const orlaId = $(this).attr("href").split('/').pop();
+                carregarYearPromotion(orlaId);
                 carregarAlumnes(orlaId);
+                carregarTeachers(orlaId);
             });
         });
 
