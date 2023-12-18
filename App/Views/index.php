@@ -43,56 +43,6 @@
 
 </head>
 
-<style>
-    .container {
-        text-align: center;
-    }
-
-    img {
-        border-radius: 15px;
-        max-width: 100px;
-        max-height: 100px;
-        width: auto;
-        height: auto;
-        object-fit: cover;
-    }
-
-    .grid-row {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        margin-bottom: 20px;
-    }
-
-    .grid-item {
-        text-align: center;
-        width: 100px;
-    }
-
-    .image-container {
-        width: 100px;
-        height: 100px;
-        overflow: hidden;
-        border-radius: 50%;
-    }
-
-    .image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .grid-item p {
-        font-size: 10px;
-        margin: 0;
-        margin-top: 2px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100px;
-    }
-</style>
 
 <body class="overflow-hidden">
 
@@ -160,9 +110,6 @@
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-
-
     <script src="/js/flowbite.min.js"></script>
     <script src="/js/bundle.js"></script>
 </body>
