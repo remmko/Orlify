@@ -139,6 +139,20 @@ class users
 
         return "succsesful";
     }
+
+    public function getTestUsers()
+    {
+        $sql = "SELECT * from users u WHERE u.isTestUser=1;";
+
+        $stm = $this->sql->prepare($sql);
+
+        $stm->execute();
+        $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+
     public function toStudent($userID)
     {
         $sql = "UPDATE users SET role = 'student' WHERE id = :userID;";
