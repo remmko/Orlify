@@ -472,14 +472,24 @@ video {
   white-space: nowrap;
   border-width: 0;
 }
+.pointer-events-none {
+  pointer-events: none;
+}
 .static {
   position: static;
 }
 .fixed {
   position: fixed;
 }
+.absolute {
+  position: absolute;
+}
 .relative {
   position: relative;
+}
+.inset-y-0 {
+  top: 0px;
+  bottom: 0px;
 }
 .left-0 {
   left: 0px;
@@ -489,6 +499,9 @@ video {
 }
 .top-0 {
   top: 0px;
+}
+.start-0 {
+  inset-inline-start: 0px;
 }
 .z-50 {
   z-index: 50;
@@ -894,6 +907,9 @@ video {
 .p-20 {
   padding: 5rem;
 }
+.p-3 {
+  padding: 0.75rem;
+}
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -944,6 +960,12 @@ video {
 }
 .pl-4 {
   padding-left: 1rem;
+}
+.ps-2 {
+  padding-inline-start: 0.5rem;
+}
+.ps-7 {
+  padding-inline-start: 1.75rem;
 }
 .text-left {
   text-align: left;
