@@ -53,8 +53,6 @@ class users
 
     public function getInfo($userID)
     {
-
-
         $sql = "select * from users where id =:userID;";
 
         $stm = $this->sql->prepare($sql);

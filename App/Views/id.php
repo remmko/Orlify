@@ -41,44 +41,72 @@
 </head>
 
 <style>
-        @media screen and (orientation: portrait) {
-            body {
-                flex-direction: column;
-            }
-            .profile-info {
-                text-align: center;
-            }
+    body {
+        background: linear-gradient(135deg, #9c75f7, #ce74f1);
+    }
+
+    @media screen and (orientation: portrait) {
+        body {
+            flex-direction: column;
         }
 
-        @media screen and (orientation: landscape) {
-            body {
-                flex-direction: row;
-            }
-            .profile-info {
-                text-align: left;
-            }
+        .profile-info {
+            text-align: center;
         }
-    </style>
+    }
 
-<body class="bg-green-500 min-h-screen flex items-center justify-center">
+    @media screen and (orientation: landscape) {
+        body {
+            flex-direction: row;
+        }
+
+        .profile-info {
+            text-align: left;
+        }
+    }
+</style>
+
+<body class="min-h-screen flex items-center justify-center">
 
     <div class="w-full max-w-screen-md bg-white p-8 rounded-lg shadow-md">
         <div class="flex flex-col items-center space-y-4">
             <div class="flex-shrink-0 w-32">
-                <img src="<?=$user["avatar"]?>" alt="Profile Image" class="rounded-full w-full h-full">
+                <img src="<?= $user["avatar"] ?>" alt="Profile Image" class="rounded-full w-full h-full">
             </div>
             <div class="text-center">
-                <p class="text-2xl font-bold text-gray-800 mb-2">Nom: <?php echo $user["name"]?></p>
-                <p class="text-2xl font-bold text-gray-800 mb-2">Cognom: <?php echo $user["last_name"]?></p>
-                <p class="text-2xl font-bold text-gray-800">
-                    <?php
+                <p class="text-2xl text-gray-800 mb-2">Nom:
+                    <b>
+                        <?php echo $user["name"] ?>
+                    </b>
+                </p>
+                <p class="text-2xl text-gray-800 mb-2">Cognom:
+                    <b>
+                        <?php echo $user["last_name"] ?>
+                    </b>
+                </p>
+                <p class="text-2xl text-gray-800">Rol:
+                    <b>
+                        <?php
                         $roleMapping = [
                             'admin' => 'Administrador',
                             'teacher' => 'Professor',
                             'student' => 'Estudiant'
                         ];
                         echo $roleMapping[$user["role"]];
+                        ?>
+                    </b>
+                </p>
+                <p class="text-2xl text-gray-800">Classe/s:
+                    <?php
+                    $orles_count = count($orles);
+                    foreach ($orles as $key => $orla) {
+                        echo "<b>" . $orla["grup_name"] . "</b>";
+                        if ($key < $orles_count - 1) {
+                            echo ", ";
+                        }
+                    }
                     ?>
+
                 </p>
             </div>
         </div>
@@ -86,15 +114,15 @@
 
 
     <script>
-    if ("serviceWorker" in navigator) {
-        self.addEventListener("load", async () => {
-            const container = navigator.serviceWorker;
-            if (container.controller === null) {
-                const reg = await container.register("js/service-worker.js");
-            }
-        });
-    }
-</script>
+        if ("serviceWorker" in navigator) {
+            self.addEventListener("load", async () => {
+                const container = navigator.serviceWorker;
+                if (container.controller === null) {
+                    const reg = await container.register("js/service-worker.js");
+                }
+            });
+        }
+    </script>
 
 
 </body>
