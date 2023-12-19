@@ -34,7 +34,11 @@
                         class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Inicia la sessió
                     </h1>
-                    <form class="space-y-4 md:space-y-6" method="POST" action="auth">
+                    <?php if ($carnet == "true") {
+                            $a = "auth?carnet=true";
+                    }else{
+                        $a = "auth";}?>
+                    <form class="space-y-4 md:space-y-6" method="POST" action="<?php echo $a?>">
                         <div>
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Nom d'usuari

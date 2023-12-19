@@ -1,47 +1,47 @@
-var doCache = true;
-var CACHE_NAME = 'my-pwa-cache-v2';
+'use strict';
+const CACHE_STATIC = 'static-cache-v1';
 
-self.addEventListener('activate', event => {
-   const cacheWhitelist = [CACHE_NAME];
-   event.waitUntil(
-       caches.keys()
-           .then(keyList =>
-               Promise.all(keyList.map(key => {
-                   if (!cacheWhitelist.includes(key)) {
-                       return caches.delete(key);
-                   }
-               }))
-           )
-   );
-});
+function hndlEventInstall(evt) {
+    /**
+     * @returns {Promise<void>}
+     */
+    async function cacheStaticFiles() {
+        const files = [
+            './',
+            'data/manifest.json',
+            'img/data.png',
+            './index.php',
+            'js/service-worker.js',
+        ];
+        const cacheStat = await caches.open(CACHE_STATIC);
+        await Promise.all(
+            files.map(function (url) {
+                return cacheStat.add(url).catch(function (reason) {
+                    console.log(`'${url}' failed: ${String(reason)}`);
+                });
+            })
+        );
+    }
 
-self.addEventListener('install', function(event) {
-   if (doCache) {
-       event.waitUntil(
-           caches.open(CACHE_NAME)
-               .then(function(cache) {
-                   fetch('data/manifest.json')
-                       .then(response => {
-                           response.json()
-                       })
-                       .then(assets => {
-                           const urlsToCache = [
-                               '/app/',
-                               '/static/core/logo.svg*',
-                           ]
-                           cache.addAll(urlsToCache)
-                       })
-               })
-       );
-   }
-});
+    //  wait until all static files will be cached
+    evt.waitUntil(cacheStaticFiles());
+}
 
-self.addEventListener('fetch', function(event) {
-   if (doCache) {
-       event.respondWith(
-           caches.match(event.request).then(function(response) {
-               return response || fetch(event.request);
-           })
-       );
-   }
-});
+function hndlEventFetch(evt) {
+    async function getFromCache() {
+        const cache = await self.caches.open(CACHE_STATIC);
+        const cachedResponse = await cache.match(evt.request);
+        if (cachedResponse) {
+            return cachedResponse;
+        }
+        // wait until resource will be fetched from server and stored in cache
+        const resp = await fetch(evt.request);
+        await cache.put(evt.request, resp.clone());
+        return resp;
+    }
+
+    evt.respondWith(getFromCache());
+}
+
+self.addEventListener('install', hndlEventInstall);
+self.addEventListener('fetch', hndlEventFetch);

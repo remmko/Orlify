@@ -13,6 +13,11 @@ use \Emeset\Contracts\Container;
                 $faliure = "true";
                 $response -> set("faliure", $faliure);
             }
+
+            if($request -> has(INPUT_GET, "carnet") && $request -> get(INPUT_GET, "carnet") == "true"){
+                $carnet = "true";
+                $response -> set("carnet", $carnet);
+            }
             $response -> setTemplate("login.php");
             return $response;
         }
