@@ -243,6 +243,10 @@ $(document).ready(function () {
         carregarCerca(orlaId);
         carregarCercaOptions(orlaId);
     });
+
+    $('.btnCookies').on('click', function () {
+        window.location = '/cookies';
+    });
 });
 
 // Pujada d'arxius del CSVpanel

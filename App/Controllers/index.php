@@ -1,13 +1,11 @@
 <?php
 function ctrlIndex($request, $response, $container)
 {
-    // $orles = $container->get('users')->getOrles();
-    // $professors = $container->get('users')->getProfessors();
-    // $alumnes = $container->get('users')->getAlumnes();
+    $cookiesAccepted = $request->get(INPUT_COOKIE, "cookiesAccepted");
 
-    // $response->set('orles', $orles);
-    // $response->set('professors', $professors);
-    // $response->set('alumnes', $alumnes);
+
+    $cookiesAccepted = isset($cookiesAccepted) ? $cookiesAccepted : false;
+    $response->set("cookiesAccepted", $cookiesAccepted);
 
     $response->setTemplate('index.php');
     return $response;

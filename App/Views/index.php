@@ -50,6 +50,26 @@
 
     <?php require_once("nav.php") ?>
 
+    <?php if (!$cookiesAccepted) { ?>
+        <!-- MODAL COOKIES -->
+        <section
+            class="fixed max-w-md p-4 mx-auto bg-white border border-gray-200 dark:bg-gray-800 left-12 bottom-16 dark:border-gray-700 rounded-2xl cookiesModal">
+            <h2 class="font-semibold text-gray-800 dark:text-white">🍪 Cookie Notice</h2>
+
+            <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">
+                Utilitzem cookies per millorar la teva experiència a la web. Si continues navegant, considerem que acceptes
+                la nostra política de cookies.
+            </p>
+
+            <div class="flex items-center justify-between mt-4 gap-x-4 shrink-0">
+                <button
+                    class="text-xs bg-gray-900 font-medium rounded-lg hover:bg-gray-700 text-white px-4 py-2.5 duration-300 transition-colors focus:outline-none btnCookies">
+                    Accept
+                </button>
+            </div>
+        </section>
+    <?php } ?>
+
 
 
     <div class="mx-auto mt-10 mr-10 ml-10 mb-5 grid-container">
@@ -87,6 +107,8 @@
                 </div>
             </div>
         </div>
+
+
 
         <!-- Right Buttons -->
         <div class="right-buttons w-56">
