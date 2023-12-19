@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import 'select2';
 
 $(document).ready(function () {
     const regex =
@@ -34,6 +35,9 @@ $(document).ready(function () {
         }
     });
 
+    // ######## AJAX INDEX
+
+    // orla
     function carregarClasses() {
         const entries = {};
 
@@ -62,9 +66,6 @@ $(document).ready(function () {
                 } else {
                     console.error('Format de dades no vàlid');
                 }
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
             },
         });
     }
@@ -103,8 +104,49 @@ $(document).ready(function () {
                     );
                 }
             },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
+        });
+    }
+
+    function carregarTeachers(orlaId) {
+        const teachersContainer = $('#teachers-grid');
+
+        $.ajax({
+            url: `/orles?id=${orlaId}`,
+            method: 'GET',
+            dataType: 'json',
+
+            success: function (data) {
+                if (Array.isArray(data.teachers)) {
+                    const teachersOrdenats = data.teachers.sort((a, b) =>
+                        a.last_name > b.last_name ? 1 : -1,
+                    );
+                    teachersContainer.empty();
+
+                    let count = 0;
+                    let currentRow;
+
+                    teachersOrdenats.forEach((teacher, index) => {
+                        if (count % 6 === 0) {
+                            // Canvia el nombre 5 per 6 per mostrar 6 imatges per fila
+                            currentRow = $("<div class='grid-row'></div>");
+                            teachersContainer.append(currentRow);
+                        }
+
+                        const teacherElement = $(`
+                                    <div class="grid-item">
+                                        <div class="image-container">
+                                            <img src="${teacher.avatar}" alt="${teacher.name}">
+                                        </div>
+                                        <p>${teacher.last_name}, <strong>${teacher.name}</strong></p>
+                                    </div>
+                                `);
+
+                        currentRow.append(teacherElement);
+                        count++;
+                    });
+                } else {
+                    console.error('Format de dades de professors no vàlid');
+                }
             },
         });
     }
@@ -155,8 +197,14 @@ $(document).ready(function () {
         });
     }
 
-    function carregarTeachers(orlaId) {
-        const teachersContainer = $('#teachers-grid');
+    function carregarCerca(orlaId) {
+        const cercaContainer = $('#alumnes-cerca');
+
+        cercaContainer.select2({
+            placeholder: 'Cerca alumnes',
+            allowClear: true,
+            // minimumInputLength: 3,
+        });
 
         $.ajax({
             url: `/orles?id=${orlaId}`,
@@ -164,52 +212,36 @@ $(document).ready(function () {
             dataType: 'json',
 
             success: function (data) {
-                if (Array.isArray(data.teachers)) {
-                    const teachersOrdenats = data.teachers.sort((a, b) =>
-                        a.last_name > b.last_name ? 1 : -1,
+                if (Array.isArray(data.alumnes)) {
+                    const cercaAlumnes = data.alumnes.sort((a, b) =>
+                        a.name > b.name ? 1 : -1,
                     );
-                    teachersContainer.empty();
+                    cercaContainer.empty();
 
-                    let count = 0;
-                    let currentRow;
-
-                    teachersOrdenats.forEach((teacher, index) => {
-                        if (count % 6 === 0) {
-                            // Canvia el nombre 5 per 6 per mostrar 6 imatges per fila
-                            currentRow = $("<div class='grid-row'></div>");
-                            teachersContainer.append(currentRow);
-                        }
-
-                        const teacherElement = $(`
-                                    <div class="grid-item">
-                                        <div class="image-container">
-                                            <img src="${teacher.avatar}" alt="${teacher.name}">
-                                        </div>
-                                        <p>${teacher.last_name}, <strong>${teacher.name}</strong></p>
-                                    </div>
+                    cercaAlumnes.forEach((alumne) => {
+                        const cercaElement = $(`
+                                    <option value="${alumne.id}">${alumne.name} ${alumne.last_name}</option>
                                 `);
 
-                        currentRow.append(teacherElement);
-                        count++;
+                        cercaContainer.append(cercaElement);
                     });
                 } else {
-                    console.error('Format de dades de professors no vàlid');
+                    console.error('Cerca no valida.');
                 }
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
             },
         });
     }
 
     carregarClasses();
 
-    $('#classes-list').on('click', 'a', function (event) {
-        event.preventDefault();
+    $('#classes-list').on('click', 'a', function (e) {
+        e.preventDefault();
         const orlaId = $(this).attr('href').split('/').pop();
         carregarYearPromotion(orlaId);
-        carregarAlumnes(orlaId);
         carregarTeachers(orlaId);
+        carregarAlumnes(orlaId);
+        carregarCerca(orlaId);
+        carregarCercaOptions(orlaId);
     });
 });
 
