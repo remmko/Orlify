@@ -363,6 +363,14 @@ class users
         $stm->execute([":avatar" => $avatar, ":id" => $_SESSION["ID"]]);
     }
 
+    public function changeUserImage($avatar, $id)
+    {
+        $sql = "UPDATE users SET avatar = :avatar WHERE id = :id";
+
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([":avatar" => $avatar, ":id" => $id]);
+    }
+
 
     public function updateInfoUser($name, $last_name)
     {
@@ -370,6 +378,14 @@ class users
 
         $stm = $this->sql->prepare($sql);
         $stm->execute([":name" => $name, ":last_name" => $last_name, ":id" => $_SESSION["ID"]]);
+    }
+    
+    public function updateUser($name, $last_name, $id)
+    {
+        $sql = "UPDATE users SET name = :name, last_name = :last_name WHERE id = :id";
+
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([":name" => $name, ":last_name" => $last_name, ":id" => $id]);
     }
 
 

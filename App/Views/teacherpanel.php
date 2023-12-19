@@ -92,6 +92,7 @@
                     <th>Cognoms</th>
                     <th>E-Mail</th>
                     <th>Avatar</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -102,6 +103,7 @@
                         <td><?= $users['last_name'] ?></td>
                         <td><?= $users['email'] ?></td>
                         <td><img style="width: 50px; height: 50px" src="<?= $users['avatar'] ?>" alt=""></td>
+                        <td><a href="/changeinfo?studentID=<?php echo $users["id"]?>&groupID=<?php echo $_GET["id"]?>"><img src="img/lapiz.svg" style="width: 20px;" alt=""></a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
