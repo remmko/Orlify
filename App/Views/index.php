@@ -18,7 +18,7 @@
     <meta name="theme-color" content="#7ACCE5">
     <meta name="msapplication-navbutton-color" content="#7ACCE5">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="msapplication-starturl" content="/">
+    <meta name="msapplication-starturl" content="/id">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">

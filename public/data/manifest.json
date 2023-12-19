@@ -1,6 +1,6 @@
 {
-    "short_name": "Orlify",
-    "name": "Orlify",
+    "short_name": "Carnet",
+    "name": "Carnet",
     "icons": [
           {
         "src":"../img/logo.png",
@@ -44,7 +44,7 @@
       }
     ],
    
-    "start_url": "/",
+    "start_url": "/id",
     "background_color": "#7ACCE5",
     "theme_color": "#7ACCE5",
     "orientation": "any",

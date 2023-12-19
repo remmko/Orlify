@@ -7,13 +7,18 @@ function ctrlAuth($request, $response, $container)
 
     $auth = $container->get("users");
     $login = $auth->auth($username, $password);
+    if($request->has(INPUT_GET, "carnet") && $request->get(INPUT_GET, "carnet") == "true"){
+        $link = "Location: /id";
+    }else{
+        $link = "Location: /";
+    }
 
     if ($login) {
         $response->setSession("auth", "true");
         $response->setSession("ID", $login["id"]);
         $response->setSession("role", $login["role"]);
         $response->setSession("img", $login["avatar"]);
-        $response->redirect("Location: /");
+        $response->redirect($link);
         return $response;
 
     } else {
