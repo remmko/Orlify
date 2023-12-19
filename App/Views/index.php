@@ -77,10 +77,17 @@
         <div class="sidebar">
             <div class="left-menu text-xl">
                 <ul>
-                    <li>Classes Publiques</li>
+                    <li>Orles Públiques</li>
+                    <ul class="text-base" id="public-list">
+                        <!-- Aquí es generarà dinàmicament la llista de classes públiques -->
+                    </ul>
 
-                    <ul id="classes-list" class="text-base">
-                        <!-- Aquí es carregaran dinàmicament les classes -->
+
+                    <li>Les teves orles</li>
+                    <ul class="text-base" id="classes-list">
+                        <li class="mt-5">
+                            <!-- Aquí es generarà dinàmicament la llista de classes -->
+                        </li>
                     </ul>
                 </ul>
             </div>
