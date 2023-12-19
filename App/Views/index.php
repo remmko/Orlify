@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="img/icons/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="img/icons/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-icon-180x180.png">
-  
+
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="img/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -42,6 +42,7 @@
     <title>Orlify</title>
 
 </head>
+
 
 <body class="overflow-hidden">
 
@@ -56,12 +57,8 @@
                 <ul>
                     <li>Classes Publiques</li>
 
-                    <ul class="text-base">
-                        <?php foreach ($orles as $value) { ?>
-                            <li class="cursor-pointer mt-4">
-                                <?= $value['orla_name'] ?>
-                            </li>
-                        <?php } ?>
+                    <ul id="classes-list" class="text-base">
+                        <!-- Aquí es carregaran dinàmicament les classes -->
                     </ul>
                 </ul>
             </div>
@@ -71,7 +68,22 @@
 
         <!-- Central -->
         <div class="central">
+            <div class="container">
+                <div class="year-promotion" id="year-promotion">
+                    <!-- Aquí es carregarà dinàmicament l'any promoció -->
+                </div>
+                <div class="teachers">
+                    <div class="grid2 p-5" id="teachers-grid">
+                        <!-- Aquí es generarà dinàmicament la llista de professors -->
+                    </div>
+                </div>
 
+                <div class="alumnes p-5">
+                    <div class="grid" id="alumnes-grid">
+                        <!-- Aquí es generarà dinàmicament la llista d'alumnes -->
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Right Buttons -->
@@ -80,55 +92,24 @@
             <form>
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-2 pointer-events-none">
-                        <svg class="w-3 h-3 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        <svg class="w-3 h-3 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" id="default-search"
-                        class="block w-full p-3 ps-7 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        required>
+                    <input type="search" id="default-search" class="block w-full p-3 ps-7 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 </div>
 
             </form>
 
-            <div class="edit">
-                <button>Editar</button>
-            </div>
-
-            <div class="template">
-                <button>Canviar plantilla</button>
-            </div>
-
             <div class="download">
                 <button>Descarregar</button>
             </div>
-            
 
-            <script>
-                if ('serviceWorker' in navigator) {
-                    window.addEventListener('load', function() {
-                        navigator.serviceWorker.register('js/service-worker.js').then(function(registration) {
-                            // Registration was successful
-                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                        }, function(err) {
-                            // registration failed :(
-                            console.log('ServiceWorker registration failed: ', err);
-                        }).catch(function(err) {
-                            console.log(err)
-                        });
-                    });
-                } else {
-                    console.log('service worker is not supported');
-                }
-
-            </script>
         </div>
     </div>
 
 
-
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="/js/flowbite.min.js"></script>
     <script src="/js/bundle.js"></script>
 </body>

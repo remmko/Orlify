@@ -84,29 +84,23 @@ class users
     public function register($username, $name, $surename, $email, $password, $grups, $getGroups, $filename)
     {
 
-        $sql = "select count(*) as username from users where username = :username";
+        $sql = "select username, email from users";
         $stm = $this->sql->prepare($sql);
 
-        $stm->execute(
-            [
-                ':username' => $username,
-        ]);
-        $result = $stm->fetch(\PDO::FETCH_ASSOC);
+        $stm->execute();
+        $tasks = array();
+
+        while ($result = $stm->fetch(\PDO::FETCH_ASSOC)) {
+            $tasks[] = $result;
+        }
 
 
-        $sql = "select count(*) as email from users where username = :username";
-        $stm = $this->sql->prepare($sql);
-
-        $stm->execute(
-            [
-                ':username' => $username,
-        ]);
-        $result = $stm->fetch(\PDO::FETCH_ASSOC);
-
-        if($result["usernmane"] > 0){
-            return "username";
-        }elseif($result["email"] > 0){
-            return "email";
+        for ($i = 0; $i < count($tasks); $i++) {
+            if ($tasks[$i]["username"] == $username) {
+                return "usernameExists";
+            } else if ($tasks[$i]["email"] == $email) {
+                return "emailExists";
+            }
         }
 
         $sql = "INSERT INTO users (name, last_name, username, password_hash, email, role, avatar) 
@@ -145,7 +139,6 @@ class users
 
         return "succsesful";
     }
-
     public function toStudent($userID)
     {
         $sql = "UPDATE users SET role = 'student' WHERE id = :userID;";
@@ -234,7 +227,7 @@ class users
 
     public function isAliasCorrect($alias)
     {
-        $sql = "SELECT * FROM grups WHERE alias = :alias;";
+        $sql = "SELECT id FROM grups WHERE alias = :alias;";
 
         $stm = $this->sql->prepare($sql);
 
@@ -391,17 +384,9 @@ class users
 
     public function getOrles()
     {
-        $sql = "SELECT * FROM orlas";
+        $sql = "SELECT * FROM grups";
 
         $stm = $this->sql->prepare($sql);
-    }
-
-    public function getTestUsers()
-    {
-        $sql = "SELECT * from users u WHERE u.isTestUser=1;";
-
-        $stm = $this->sql->prepare($sql);
-
         $stm->execute();
         $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -409,14 +394,36 @@ class users
     }
 
 
-    public function createNewOrla($name, $date)
+    public function getTeachers($id)
     {
-        $sql = "INSERT INTO orlas (orla_name, creation_date) VALUES (:name, :date)";
+        $sql = "SELECT u.* FROM users u where u.id IN (SELECT g.grup_teacher FROM grups g WHERE g.id = :id);";
 
         $stm = $this->sql->prepare($sql);
-        $stm->execute([":name" => $name, ":date" => $date]);
+        $stm->execute([":id" => $id]);
+        $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
     }
-    
+
+
+    public function getAlumnes($id)
+    {
+        $sql = "SELECT u.* FROM users u WHERE u.id IN (SELECT ug.user_id FROM user_grups ug WHERE ug.grup_id = :id AND ug.aproved = 1);";
+
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([":id" => $id]);
+        $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    public function createNewOrla($name, $date, $alias)
+    {
+        $sql = "INSERT INTO grups (grup_name, creation_year, alias) VALUES (:name, :date, :alias)";
+
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([":name" => $name, ":date" => $date, ":alias" => $alias]);
+    }
+
     public function uploadTestUsers($role, $name, $surname, $email, $username, $avatar)
     {
         $password = hash("sha256", "testing10");
