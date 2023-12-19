@@ -372,7 +372,7 @@ class users
         $stm = $this->sql->prepare($sql);
         $stm->execute([":name" => $name, ":last_name" => $last_name, ":id" => $_SESSION["ID"]]);
     }
-    
+
     public function updateUser($name, $last_name, $id)
     {
         $sql = "UPDATE users SET name = :name, last_name = :last_name WHERE id = :id";
@@ -381,13 +381,23 @@ class users
         $stm->execute([":name" => $name, ":last_name" => $last_name, ":id" => $id]);
     }
 
-
-    public function getOrles()
+    public function getOrlesPublic()
     {
-        $sql = "SELECT * FROM grups";
+        $sql = "SELECT * FROM grups WHERE public = 1";
 
         $stm = $this->sql->prepare($sql);
         $stm->execute();
+        $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function getOrlesPrivate()
+    {
+        $sql = "SELECT * FROM grups WHERE id IN (SELECT grup_id FROM user_grups WHERE user_id = :user);";
+
+        $stm = $this->sql->prepare($sql);
+        $stm->execute([":user" => $_SESSION["ID"]]);
         $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
 
         return $result;

@@ -41,6 +41,7 @@ include "../App/Controllers/randomUserGenerator.php";
 include "../App/Controllers/uploadRandomUser.php";
 include "../App/Controllers/changeuser.php";
 include "../App/Controllers/orles.php";
+include "../App/Controllers/public.php";
 include "../App/Controllers/cookies.php";
 
 
@@ -79,6 +80,7 @@ $app->route("changeinfo", "ctrlChangeUser");
 $app->route("changeuserinfo", "ctrlChangeInfo");
 $app->route("changeuserimage", "ctrlChangeUserImage");
 $app->route("orles", "ctrlOrles");
+$app->route("public", "ctrlPublic");
 $app->route("cookies", "ctrlAcceptCookies");
 
 

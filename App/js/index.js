@@ -37,7 +37,170 @@ $(document).ready(function () {
 
     // ######## AJAX INDEX
 
-    // orla
+    // public
+    function carregarClassesPublic() {
+        const entries = {};
+
+        $.ajax({
+            url: '/public',
+            method: 'GET',
+            data: entries,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+
+                if (Array.isArray(data.orlesPublic)) {
+                    const classesList = $('#public-list');
+                    classesList.empty();
+
+                    data.orlesPublic.forEach((orla) => {
+                        const orlaElement = $(`
+                                    <li class="mt-5">
+                                        <a href="/${orla.id}">
+                                            ${orla.grup_name}
+                                        </a>
+                                    </li>
+                                `);
+                        classesList.append(orlaElement);
+                    });
+                } else {
+                    console.error('Format de dades no vàlid');
+                }
+            },
+        });
+    }
+
+    function carregarYearPromotionPublic(orlaId) {
+        const yearPromotionContainer = $('#year-promotion');
+
+        $.ajax({
+            url: `/public?id=${orlaId}`,
+            method: 'GET',
+            dataType: 'json',
+
+            success: function (data) {
+                console.log(data);
+                if (
+                    Array.isArray(data.orlesPublic) &&
+                    data.orlesPublic.length > 0
+                ) {
+                    const orlaSeleccionada = data.orlesPublic.find(
+                        (orla) => orla.id === parseInt(orlaId),
+                    );
+
+                    if (orlaSeleccionada && orlaSeleccionada.creation_year) {
+                        const yearPromotion = orlaSeleccionada.creation_year;
+
+                        const yearPromotionElement = $(`
+                        <h1 class="text-3xl font-bold text-center mt-5">Promoció del ${yearPromotion}</h1>
+                    `);
+
+                        yearPromotionContainer
+                            .empty()
+                            .append(yearPromotionElement);
+                    } else {
+                        console.error("No s'ha trobat l'any de la promoció");
+                    }
+                } else {
+                    console.error(
+                        'Format de dades de la orla no vàlid o orla no trobada',
+                    );
+                }
+            },
+        });
+    }
+
+    function carregarTeachersPublic(orlaId) {
+        const teachersContainer = $('#teachers-grid');
+
+        $.ajax({
+            url: `/public?id=${orlaId}`,
+            method: 'GET',
+            dataType: 'json',
+
+            success: function (data) {
+                if (Array.isArray(data.teachers)) {
+                    const teachersOrdenats = data.teachers.sort((a, b) =>
+                        a.last_name > b.last_name ? 1 : -1,
+                    );
+                    teachersContainer.empty();
+
+                    let count = 0;
+                    let currentRow;
+
+                    teachersOrdenats.forEach((teacher) => {
+                        if (count % 6 === 0) {
+                            // Canvia el nombre 5 per 6 per mostrar 6 imatges per fila
+                            currentRow = $("<div class='grid-row'></div>");
+                            teachersContainer.append(currentRow);
+                        }
+
+                        const teacherElement = $(`
+                                    <div class="grid-item">
+                                        <div class="image-container">
+                                            <img src="${teacher.avatar}" alt="${teacher.name}">
+                                        </div>
+                                        <p>${teacher.last_name}, <strong>${teacher.name}</strong></p>
+                                    </div>
+                                `);
+
+                        currentRow.append(teacherElement);
+                        count++;
+                    });
+                } else {
+                    console.error('Format de dades de professors no vàlid');
+                }
+            },
+        });
+    }
+
+    function carregarAlumnesPublic(orlaId) {
+        const alumnesContainer = $('.alumnes .grid');
+
+        $.ajax({
+            url: `/public?id=${orlaId}`,
+            method: 'GET',
+            dataType: 'json',
+
+            success: function (data) {
+                if (Array.isArray(data.alumnes)) {
+                    const alumnesOrdenats = data.alumnes.sort((a, b) =>
+                        a.last_name > b.last_name ? 1 : -1,
+                    );
+                    alumnesContainer.empty();
+
+                    let count = 0;
+                    let currentRow;
+
+                    alumnesOrdenats.forEach((alumne) => {
+                        if (count % 7 === 0) {
+                            currentRow = $("<div class='grid-row'></div>");
+                            alumnesContainer.append(currentRow);
+                        }
+
+                        const alumneElement = $(`
+                                    <div class="grid-item">
+                                        <div class="image-container">
+                                            <img src="${alumne.avatar}" alt="${alumne.name}">
+                                        </div>
+                                        <p>${alumne.last_name}, <strong>${alumne.name}</strong></p>
+                                    </div>
+                                `);
+
+                        currentRow.append(alumneElement);
+                        count++;
+                    });
+                } else {
+                    console.error("Format de dades d'alumnes no vàlid");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            },
+        });
+    }
+
+    // private
     function carregarClasses() {
         const entries = {};
 
@@ -49,11 +212,11 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
 
-                if (Array.isArray(data.orles)) {
+                if (Array.isArray(data.orlesPrivate)) {
                     const classesList = $('#classes-list');
                     classesList.empty();
 
-                    data.orles.forEach((orla) => {
+                    data.orlesPrivate.forEach((orla) => {
                         const orlaElement = $(`
                                     <li class="mt-5">
                                         <a href="/${orla.id}">
@@ -80,8 +243,11 @@ $(document).ready(function () {
 
             success: function (data) {
                 console.log(data);
-                if (Array.isArray(data.orles) && data.orles.length > 0) {
-                    const orlaSeleccionada = data.orles.find(
+                if (
+                    Array.isArray(data.orlesPrivate) &&
+                    data.orlesPrivate.length > 0
+                ) {
+                    const orlaSeleccionada = data.orlesPrivate.find(
                         (orla) => orla.id === parseInt(orlaId),
                     );
 
@@ -125,7 +291,7 @@ $(document).ready(function () {
                     let count = 0;
                     let currentRow;
 
-                    teachersOrdenats.forEach((teacher, index) => {
+                    teachersOrdenats.forEach((teacher) => {
                         if (count % 6 === 0) {
                             // Canvia el nombre 5 per 6 per mostrar 6 imatges per fila
                             currentRow = $("<div class='grid-row'></div>");
@@ -169,7 +335,7 @@ $(document).ready(function () {
                     let count = 0;
                     let currentRow;
 
-                    alumnesOrdenats.forEach((alumne, index) => {
+                    alumnesOrdenats.forEach((alumne) => {
                         if (count % 7 === 0) {
                             currentRow = $("<div class='grid-row'></div>");
                             alumnesContainer.append(currentRow);
@@ -232,8 +398,8 @@ $(document).ready(function () {
         });
     }
 
+    // private
     carregarClasses();
-
     $('#classes-list').on('click', 'a', function (e) {
         e.preventDefault();
         const orlaId = $(this).attr('href').split('/').pop();
@@ -244,6 +410,17 @@ $(document).ready(function () {
         carregarCercaOptions(orlaId);
     });
 
+    // public
+    carregarClassesPublic();
+    $('#public-list').on('click', 'a', function (e) {
+        e.preventDefault();
+        const orlaId = $(this).attr('href').split('/').pop();
+        carregarYearPromotionPublic(orlaId);
+        carregarAlumnesPublic(orlaId);
+        carregarTeachersPublic(orlaId);
+    });
+
+    // Cookies
     $('.btnCookies').on('click', function () {
         window.location = '/cookies';
     });
