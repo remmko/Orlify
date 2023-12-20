@@ -2,7 +2,7 @@
 function ctrlManagerPanel($request, $response, $container)
 {
 
-    if($_SESSION["auth"]==true&&$_SESSION["rol"]=="manager"){
+    if($_SESSION["auth"]==true&&$_SESSION["role"]=="manager"){
         $response->setTemplate('managerPanel.php');
         return $response;
     }else{
