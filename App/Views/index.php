@@ -40,7 +40,14 @@
 
 
     <title>Orlify</title>
-
+<style>
+    @media print {
+        body{
+            width: 29.7cm;
+            height: 21cm;
+       } 
+    }
+</style>
 </head>
 
 
@@ -102,16 +109,21 @@
             </form>
 
             <div class="download">
-                <button>Descarregar</button>
+                <button id="pdfButton">Descarregar</button>
+                <div id="sizeSelector">
+                    <label for="paperSize">Select Paper Size:</label>
+                    <select id="paperSize">
+                        <option value="b4">A4</option>
+                        <option value="a3">A3</option>
+                    </select>
+                </div>
             </div>
-
         </div>
-    </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="/js/flowbite.min.js"></script>
-    <script src="/js/bundle.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script src="/js/flowbite.min.js"></script>
+        <script src="/js/bundle.js"></script>
 </body>
 
 </html>
