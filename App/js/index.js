@@ -1,3 +1,24 @@
+/*------------------------------------------------------------------
+
+1. Imports
+2. Password requirements
+3. Index Orles
+    3.1. Index Public Orles
+    3.2. Index Private Orles
+    3.3. Index Call functions
+        3.3.1. Index Call Functions Private
+        3.3.2. Index Call Functions Public
+4. Cookies
+5. Upload CSV
+6. Personal Information Drag and Drop
+7. Random User
+
+-----------------------------------------------------*/
+
+/*------------------------------------------------------------------
+1. Imports
+-------------------------------------------------------------------*/
+
 import $ from 'jquery';
 import 'select2';
 
@@ -35,9 +56,13 @@ $(document).ready(function () {
         }
     });
 
-    // ######## AJAX INDEX
+    /*------------------------------------------------------------------
+    3. Index Orles
+    -------------------------------------------------------------------*/
 
-    // public
+    /*------------------------------------------------------------------
+    3.1. Index Public Orles
+    -------------------------------------------------------------------*/
     function carregarClassesPublic() {
         const entries = {};
 
@@ -200,7 +225,9 @@ $(document).ready(function () {
         });
     }
 
-    // private
+    /*------------------------------------------------------------------
+    3.2. Index Private Orles
+    -------------------------------------------------------------------*/
     function carregarClasses() {
         const entries = {};
 
@@ -398,7 +425,25 @@ $(document).ready(function () {
         });
     }
 
-    // private
+    /*------------------------------------------------------------------
+    3.3. Index Call Functions
+    -------------------------------------------------------------------*/
+
+    /*------------------------------------------------------------------
+    3.3.1. Index Call Functions Private
+    -------------------------------------------------------------------*/
+    carregarClassesPublic();
+    $('#public-list').on('click', 'a', function (e) {
+        e.preventDefault();
+        const orlaId = $(this).attr('href').split('/').pop();
+        carregarYearPromotionPublic(orlaId);
+        carregarAlumnesPublic(orlaId);
+        carregarTeachersPublic(orlaId);
+    });
+
+    /*------------------------------------------------------------------
+    3.3.2. Index Call Functions Public
+    -------------------------------------------------------------------*/
     carregarClasses();
     $('#classes-list').on('click', 'a', function (e) {
         e.preventDefault();
@@ -410,24 +455,17 @@ $(document).ready(function () {
         carregarCercaOptions(orlaId);
     });
 
-    // public
-    carregarClassesPublic();
-    $('#public-list').on('click', 'a', function (e) {
-        e.preventDefault();
-        const orlaId = $(this).attr('href').split('/').pop();
-        carregarYearPromotionPublic(orlaId);
-        carregarAlumnesPublic(orlaId);
-        carregarTeachersPublic(orlaId);
-    });
-
-    // Cookies
+    /*------------------------------------------------------------------
+    4. Cookies
+    -------------------------------------------------------------------*/
     $('.btnCookies').on('click', function () {
         window.location = '/cookies';
     });
 });
 
-// Pujada d'arxius del CSVpanel
-
+/*------------------------------------------------------------------
+5. Upload CSV
+-------------------------------------------------------------------*/
 const dropArea = document.getElementById('dropArea');
 const dropText = document.getElementById('dropText');
 const fileInput = document.getElementById('fileInput');

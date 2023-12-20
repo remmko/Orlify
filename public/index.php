@@ -82,8 +82,6 @@ $app->route("changeuserinfo", "ctrlChangeInfo");
 $app->route("changeuserimage", "ctrlChangeUserImage");
 $app->route("orles", "ctrlOrles");
 $app->route("id", "ctrlId");
-$app->route("cookies", "ctrlAcceptCookies");
-
 $app->route("public", "ctrlPublic");
 $app->route("cookies", "ctrlAcceptCookies");
 
