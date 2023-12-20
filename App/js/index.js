@@ -21,6 +21,9 @@
 
 import $ from 'jquery';
 import 'select2';
+import html2canvas from 'html2canvas';
+import { jsPDF } from "jspdf";
+import { Canvg } from 'canvg';
 
 $(document).ready(function () {
     const regex =
@@ -462,6 +465,60 @@ $(document).ready(function () {
         window.location = '/cookies';
     });
 });
+//pdf
+if (window.location.pathname === '/') {
+    
+    console.log('PDF generation is available only on the /orles page.');
+    document.getElementById('pdfButton').addEventListener('click', function () {
+        const paperSize = document.getElementById('paperSize').value;
+        const centralDiv = document.querySelector('.central');
+
+        // Use html2canvas to capture the content of the centralDiv
+        html2canvas(centralDiv).then(canvas => {
+            // Create a cloned div for PDF generation
+            const clonedDiv = centralDiv.cloneNode(true);
+
+            // Apply different styles for PDF
+            clonedDiv.style.width = '100%'; // Adjust the width as needed
+            clonedDiv.style.height = '100%'; // Adjust the height as needed
+            clonedDiv.style.backgroundColor = 'white'; // Set background color to white
+            clonedDiv.style.display = 'flex';
+            clonedDiv.style.justifyContent = 'center';
+            clonedDiv.style.alignItems = 'center';
+
+            // Process SVG images using canvg (optional)
+            const svgs = clonedDiv.querySelectorAll('svg');
+            svgs.forEach((svg) => {
+                // Create a canvas for the SVG
+                const svgCanvas = document.createElement('canvas');
+                svgCanvas.width = svg.getAttribute('width') || 100; // Default width if not specified
+                svgCanvas.height = svg.getAttribute('height') || 100; // Default height if not specified
+
+                // Replace the SVG with the canvas
+                svg.parentNode.replaceChild(svgCanvas, svg);
+
+                // Use canvg to render the SVG on the canvas
+                canvg(svgCanvas, new XMLSerializer().serializeToString(svg));
+            });
+
+            // Create a new jsPDF instance
+            const pdf = new jsPDF({
+                unit: 'mm',
+                format: paperSize,
+                orientation: 'landscape'
+            });
+
+            // Convert the canvas to an image
+            const imgData = canvas.toDataURL('image/jpeg');
+
+            // Add the image to the PDF
+            pdf.addImage(imgData, 'JPEG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight());
+
+            // Save or open the PDF
+            pdf.save('output.pdf');
+        });
+    });
+}
 
 /*------------------------------------------------------------------
 5. Upload CSV
@@ -592,3 +649,4 @@ function submitFormData(formData) {
 dropArea.addEventListener('click', () => {
     fileInput.click();
 });
+
