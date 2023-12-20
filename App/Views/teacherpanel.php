@@ -116,6 +116,9 @@
 
     <script src="/js/flowbite.min.js"></script>
     <script src="/js/bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
 
     <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <input type="hidden" id="groupID">
