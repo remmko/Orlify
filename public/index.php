@@ -35,7 +35,7 @@ include "../App/Controllers/newPass.php";
 include "../App/Controllers/changeImage.php";
 include "../App/Controllers/updateInfoUser.php";
 include "../App/Controllers/error.php";
-include "../App/Controllers/managerPanel.php";
+include "../App/Controllers/managerpanel.php";
 include "../App/Controllers/newOrla.php";
 include "../App/Controllers/randomUserGenerator.php";
 include "../App/Controllers/uploadRandomUser.php";
